@@ -10,4 +10,5 @@ urlpatterns = [
     path('Academico/grados/', views.grados),
     path('Academico/materias-noveno-decimo/', views.materiasNovenoDecimo),
     path('Academico/simulacro/', views.simulacro1),
+    path('logout/', views.logout, name='logout'),
 ]

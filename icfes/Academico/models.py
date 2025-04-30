@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-# Create your models here.
+
 
 class Simulacro(models.Model):
     id_Simulacro = models.AutoField(primary_key=True)
@@ -36,11 +35,3 @@ class Resultados(models.Model):
     id_Simulacro = models.ForeignKey(Simulacro, on_delete=models.CASCADE)
     Puntaje_decimal = models.CharField(max_length=45)
     Fecha_realizacion = models.DateField()
-
-
-class UsuarioPersonalizado(AbstractUser):
-    ROL_CHOICES = (
-        ('estudiante', 'Estudiante'),
-        ('profesor', 'Profesor'),
-    )
-    rol = models.CharField(max_length=10, choices=ROL_CHOICES, default='estudiante')

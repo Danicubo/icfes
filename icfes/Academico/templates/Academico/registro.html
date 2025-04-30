@@ -193,15 +193,12 @@
       </p>
       <div class="book"></div>
 
+      <h2>Iniciar sesión</h2>
       <form method="post">
-        <!-- {% csrf_token %} -->
-        <label>Correo:</label><br />
-        <input type="email" name="correo" required /><br />
-        <label>Grado / Especialidad:</label><br />
-        <input type="text" name="dato" required /><br />
-        <button type="submit">Iniciar sesión</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ingresar</button>
       </form>
-      <p style="color: red">{{ error }}</p>
     </section>
 
     <section style="background-color: #f5f5f5">

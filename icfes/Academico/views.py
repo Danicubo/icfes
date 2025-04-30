@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import RegistroForm
 from .models import Estudiante, Simulacro, Profesores, Resultados
-from django.http import HttpResponseForbidden
+from .forms import LoginForm
+from .utils.decorators import solo_profesores
 
 def index(request):
     listadoEstudiantes = Estudiante.objects.all()
@@ -74,16 +74,6 @@ def eliminarEstudiante(request, id_Estudiantes):
     return redirect('/')  # Redirige a la página principal o a la lista de estudiantes
 
 
-def registro(request):
-    if request.method == 'POST':
-        form = RegistroForm(request.POST)
-        if form.is_valid():
-            # Aquí podrías guardar la data si deseas
-            return redirect('grados')
-    else:
-        form = RegistroForm()
-    return render(request, 'Academico/registro.html', {'form': form})
-
 def grados(request):
     return render(request, 'Academico/grados.html')
 
@@ -94,63 +84,46 @@ def simulacro1(request):
     return render(request, 'Academico/simulacro.html')
 
 
-def login_view(request):
+def registro(request):
     if request.method == 'POST':
-        correo = request.POST['correo']
-        dato = request.POST['dato']
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            correo = form.cleaned_data['correo']
+            rol = form.cleaned_data['rol']
 
-        user = None
-        tipo = None
+            if rol == 'estudiante':
+                if Estudiante.objects.filter(correo=correo).exists():
+                    estudiante = Estudiante.objects.get(correo=correo)
+                    request.session['usuario_id'] = estudiante.id_Estudiantes
+                    request.session['rol'] = 'estudiante'
+                    return redirect('/Academico/materias-noveno-decimo/')
+                else:
+                    form.add_error(None, 'Estudiante no encontrado')
+            elif rol == 'profesor':
+                if Profesores.objects.filter(correo=correo).exists():
+                    profesor = Profesores.objects.get(correo=correo)
+                    request.session['usuario_id'] = profesor.id_profesores
+                    request.session['rol'] = 'profesor'
+                    return redirect('/')
+                else:
+                    form.add_error(None, 'Profesor no encontrado')
+    else:
+        form = LoginForm()
 
-        # Buscar en estudiantes
-        try:
-            user = estudiante.objects.get(correo=correo, grado=dato)
-            tipo = 'estudiante'
-        except estudiante.DoesNotExist:
-            pass
+    return render(request, 'Academico/registro.html', {'form': form})
 
-        # Si no es estudiante, buscar en profesores
-        if not user:
-            try:
-                user = profesores.objects.get(correo=correo, especialidad=dato)
-                tipo = 'profesor'
-            except profesores.DoesNotExist:
-                pass
 
-        if user:
-            request.session['usuario_id'] = user.id_Estudiantes if tipo == 'estudiante' else user.id_profesores
-            request.session['usuario_tipo'] = tipo
-            return redirect('/')  # Cambia 'inicio' por la vista a la que quieras redirigir
-        else:
-            return render(request, 'Academico/login.html', {'error': 'Credenciales inválidas'})
-
-    return render(request, 'Academico/login.html')
-
-def logout_view(request):
+def logout(request):
     request.session.flush()
-    return redirect('login')
+    return redirect('/Academico/registro')
 
-def solo_estudiantes(vista_func):
-    def wrapper(request, *args, **kwargs):
-        if request.session.get('usuario_tipo') != 'estudiante':
-            return HttpResponseForbidden("Acceso denegado.")
-        return vista_func(request, *args, **kwargs)
-    return wrapper
 
-def solo_profesores(vista_func):
-    def wrapper(request, *args, **kwargs):
-        if request.session.get('usuario_tipo') != 'profesor':
-            return HttpResponseForbidden("Acceso denegado.")
-        return vista_func(request, *args, **kwargs)
-    return wrapper
 
-@solo_estudiantes
-def vista_estudiante(request):
-    # contenido
-    pass
+
+def vista_para_estudiantes(request):
+    if request.session.get('rol') != 'estudiante':
+        return redirect('login')  # o mostrar error
 
 @solo_profesores
-def vista_profesor(request):
-    # contenido
-    pass
-
+def index(request):
+    return render(request, 'Academico/index.html')

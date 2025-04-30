@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -127,11 +127,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Modelo de usuario personalizado
-AUTH_USER_MODEL = 'Academico.UsuarioPersonalizado'
-
-# Redirecciones después de login/logout
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'  # Puedes cambiarlo para redirigir según el rol
-LOGOUT_REDIRECT_URL = '/login/'
