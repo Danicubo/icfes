@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Registrar Nuevo Estudiante</h2>
+    <form method="post" ac>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombre_completo" class="form-label">Nombre Completo:</label>
+            <input type="text" class="form-control" id="nombre_completo" name="txtNombreCompleto" required>
+        </div>
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo:</label>
+            <input type="email" class="form-control" id="correo" name="txtCorreo" required>
+        </div>
+        <div class="mb-3">
+            <label for="grado" class="form-label">Grado:</label>
+            <input type="text" class="form-control" id="grado" name="txtGrado" required>
+        </div>
+        <div class="mb-3">
+            <label for="fecha_registro" class="form-label">Fecha de Registro:</label>
+            <input type="date" class="form-control" id="fecha_registro" name="txtFechaRegistro" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Registrar Estudiante</button>
+            <a href="/" class="btn btn-secondary ms-2">Cancelar</a>
+        </div>
+    </form>
+
+    <h2 class="text-center mt-5">Lista de Estudiantes</h2>
+    <table class="table table-striped table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Nombre Completo</th>
+                <th>Correo</th>
+                <th>Grado</th>
+                <th>Fecha Registro</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante in estudiantes %}
+            <tr>
+                <td>{{ estudiante.id_Estudiantes }}</td>
+                <td>{{ estudiante.nombre_completo }}</td>
+                <td>{{ estudiante.correo }}</td>
+                <td>{{ estudiante.grado }}</td>
+                <td>{{ estudiante.fecha_registro }}</td>
+                <td>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No hay estudiantes registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

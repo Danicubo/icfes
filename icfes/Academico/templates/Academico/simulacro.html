@@ -1,0 +1,449 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isamar - Simulador de Examen</title>
+    <style>
+     
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9e5;
+        }
+        .logo {
+            color: #4a8d47;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .logo-icon {
+            background-color: #e5bb31;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .question-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid #4a8d47;
+        }
+        .info-text {
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #e5bb31;
+            color: #333;
+        }
+        .option {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .option:hover {
+            background-color: #f0f7e6;
+        }
+        .option-label {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #4a8d47;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        .button-next {
+            background-color: #4a8d47;
+            color: white;
+        }
+        .button-prev {
+            background-color: #e5bb31;
+            color: #333;
+        }
+        .button-submit {
+            background-color: #f2994a;
+            color: white;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .pagination-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .pagination-dot:hover {
+            transform: scale(1.2);
+        }
+        .pagination-dot.active {
+            background-color: #4a8d47;
+        }
+        .question {
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-column a {
+            color: #4a8d47;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+        .footer-column a:hover {
+            color: #e5bb31;
+        }
+        .footer-column h3 {
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #e5bb31;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+        .header-banner {
+            background: linear-gradient(135deg, #4a8d47 0%, #8bc34a 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-banner h1 {
+            margin: 0;
+        }
+        .header-banner p {
+            margin: 5px 0 0;
+        }
+
+
+    
+    </style>
+</head>
+<body>
+    <div class="">
+        <div class="header-banner">
+            <h1>ISAMAR</h1>
+            <p>Simulador de Examen Interactivo</p>
+        </div>
+        
+        <div class="logo">
+            <div class="logo-icon">✓</div>
+            Isamar
+        </div>
+
+        <div id="question1" class="question-container question active">
+            <div class="info-text">
+                <p>El subsidio familiar de vivienda (SFV) es un aporte que entrega el Estado y que constituye un complemento del ahorro, para facilitar la adquisición, construcción o mejoramiento de una solución de vivienda de interés social al ciudadano. A continuación se presenta la tabla de ingresos en salarios mínimos mensuales legales vigentes (SMMLV) y el subsidio al que tiene derecho, para cierto año.</p>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Ingresos (SMMLV)</th>
+                            <th colspan="2">Valores $</th>
+                            <th rowspan="2">Valor de SFV en SMMLV</th>
+                        </tr>
+                        <tr>
+                            <th>Desde</th>
+                            <th>Hasta</th>
+                            <th>Desde</th>
+                            <th>Hasta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>535.600</td>
+                            <td>22</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1,5</td>
+                            <td>535.600</td>
+                            <td>803.400</td>
+                            <td>21,5</td>
+                        </tr>
+                        <tr>
+                            <td>1,5</td>
+                            <td>2</td>
+                            <td>803.400</td>
+                            <td>1.071.200</td>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2,25</td>
+                            <td>1.071.200</td>
+                            <td>1.205.100</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>2,25</td>
+                            <td>2,5</td>
+                            <td>1.205.100</td>
+                            <td>1.339.000</td>
+                            <td>17</td>
+                        </tr>
+                        <tr>
+                            <td>2,5</td>
+                            <td>2,75</td>
+                            <td>1.339.000</td>
+                            <td>1.472.900</td>
+                            <td>15</td>
+                        </tr>
+                        <tr>
+                            <td>2,75</td>
+                            <td>3</td>
+                            <td>1.472.900</td>
+                            <td>1.606.800</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3,5</td>
+                            <td>1.606.800</td>
+                            <td>1.874.600</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>3,5</td>
+                            <td>4</td>
+                            <td>1.874.600</td>
+                            <td>2.142.400</td>
+                            <td>4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="info-text">
+                <p>Con el SFV más los ahorros con los que cuente el grupo familiar y el crédito que obtenga de una entidad financiera, se puede comprar la vivienda. Por tanto, el procedimiento correcto para estimar el valor del crédito que debe solicitarse al banco es:</p>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">A</div>
+                <div>Valor del crédito = ingresos + ahorros + subsidio + valor de la Vivienda.</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">B</div>
+                <div>Valor del crédito = valor de la vivienda − (ahorros + subsidio).</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">C</div>
+                <div>Valor del crédito = ingresos + ahorros − subsidio + valor de la Vivienda.</div>
+            </div>
+        </div>
+
+        <div id="question2" class="question-container question">
+            <div class="info-text">
+                <p>Con el SFV más los ahorros con los que cuente el grupo familiar y el crédito que obtenga de una entidad financiera, se puede comprar la vivienda. Por tanto, el procedimiento correcto para estimar el valor del crédito que debe solicitarse al banco es:</p>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">A</div>
+                <div>Valor del crédito = ingresos + ahorros + subsidio + valor de la Vivienda.</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">B</div>
+                <div>Valor del crédito = valor de la vivienda − (ahorros + subsidio).</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">C</div>
+                <div>Valor del crédito = ingresos + ahorros − subsidio + valor de la Vivienda.</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">D</div>
+                <div>Valor del crédito = valor de la vivienda + (subsidio − ahorros).</div>
+            </div>
+        </div>
+
+        <div id="question3" class="question-container question">
+            <div class="info-text">
+                <p>Para acceder al subsidio familiar de vivienda (SFV), un ciudadano debe cumplir ciertos requisitos. ¿Cuál de las siguientes opciones representa el principal requisito para obtener el SFV?</p>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">A</div>
+                <div>Tener ingresos familiares por debajo de 4 SMMLV.</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">B</div>
+                <div>Poseer una cuenta de ahorro programado para vivienda.</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">C</div>
+                <div>Ser mayor de 25 años y tener al menos un hijo.</div>
+            </div>
+            
+            <div class="option">
+                <input type="radio" id="q1-optionA" name="q1" value="A" class="option-radio">
+                <div class="option-label">D</div>
+                <div>Tener un crédito pre-aprobado con una entidad bancaria.</div>
+            </div>
+        </div>
+        
+          </div>
+        <div class="pagination">
+            <div class="pagination-dot active" onclick="showQuestion(1)"></div>
+            <div class="pagination-dot" onclick="showQuestion(2)"></div>
+            <div class="pagination-dot" onclick="showQuestion(3)"></div>
+            <div class="pagination-dot" onclick="showQuestion(4)"></div>
+            <div class="pagination-dot" onclick="showQuestion(5)"></div>
+            <div class="pagination-dot" onclick="showQuestion(6)"></div>
+            <div class="pagination-dot" onclick="showQuestion(7)"></div>
+            <div class="pagination-dot" onclick="showQuestion(8)"></div>
+            <div class="pagination-dot" onclick="showQuestion(9)"></div>
+            <div class="pagination-dot" onclick="showQuestion(10)"></div>
+            <div class="pagination-dot" onclick="showQuestion(11)"></div>
+            <div class="pagination-dot" onclick="showQuestion(12)"></div>
+        </div>
+
+        <div class="footer">
+            <button class="button button-submit">Calificar</button>
+            <div>
+                <button class="button button-prev" onclick="prevQuestion()">←</button>
+                <button class="button button-next" onclick="nextQuestion()">→</button>
+            </div>
+        </div>
+
+        <!-- Se eliminaron las secciones de CUENTA, SOPORTE y LEGAL -->
+
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 3;
+
+        function showQuestion(number) {
+            // Hide all questions
+            document.querySelectorAll('.question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Show the selected question
+            document.getElementById('question' + number).classList.add('active');
+            
+            // Update pagination dots
+            document.querySelectorAll('.pagination-dot').forEach((dot, index) => {
+                if (index === number - 1) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+            
+            // Update current question tracker
+            currentQuestion = number;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                showQuestion(currentQuestion + 1);
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

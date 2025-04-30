@@ -1,0 +1,274 @@
+{% extends "./base.html" %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Aprendizaje</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8BC34A 0%, #4CAF50 100%);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #FFEB3B;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            padding: 25px 25px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #2E7D32;
+            font-weight: 600;
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #F9FBE7;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+        
+        .card-body {
+            padding: 0 25px 20px;
+        }
+        
+        .card-text {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .card-actions {
+            padding: 0 25px 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #FFEB3B;
+            color: #333;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #FDD835;
+            transform: scale(1.05);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+        
+        .btn-outline:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 20px 0;
+        }
+        
+        .footer {
+            background-color: #F1F8E9;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+            color: #558B2F;
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="title">Centro de Preparación Académica</h1>
+        <p class="subtitle">Recursos para fortalecer tus conocimientos y habilidades</p>
+    </header>
+    
+    <main class="main">
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="card-header">
+                    <h2 class="card-title">Introducción al Examen</h2>
+                    <div class="card-icon">🔍</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Conoce la estructura general del examen, tipos de preguntas y recomendaciones para obtener mejores resultados en tu preparación inicial.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn">Guía de orientación</a>
+                    <a href="#" class="btn btn-outline">Tutorial interactivo</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="card-header">
+                    <h2 class="card-title">Comprensión Lectora</h2>
+                    <div class="card-icon">📚</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Mejora tu capacidad para analizar textos, identificar ideas principales y comprender información implícita en diferentes tipos de textos.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn">Material explicativo</a>
+                    <a href="#" class="btn btn-outline">Ejercicios prácticos</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="card-header">
+                    <h2 class="card-title">Matematicas</h2>
+                    <div class="card-icon">🧮</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Desarrolla habilidades para resolver problemas matemáticos, interpretar gráficos y aplicar conceptos numéricos en situaciones cotidianas.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn">Material explicativo</a>
+                    <a href="#" class="btn btn-outline">Ejercicios prácticos</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="card-header">
+                    <h2 class="card-title">Ciencias Sociales</h2>
+                    <div class="card-icon">🌎</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Profundiza en temas de historia, geografía, economía y competencias ciudadanas para comprender mejor las dinámicas sociales.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn">Material explicativo</a>
+                    <a href="#" class="btn btn-outline">Ejercicios prácticos</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="card-header">
+                    <h2 class="card-title">Ciencias Naturales</h2>
+                    <div class="card-icon">🔬</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Explora conceptos fundamentales de biología, química, física y medio ambiente para entender los fenómenos naturales.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn">Material explicativo</a>
+                    <a href="#" class="btn btn-outline">Ejercicios prácticos</a>
+                </div>
+            </div>
+            
+            <div class="resource-card">
+                <div class="card-header">
+                    <h2 class="card-title">Inglés</h2>
+                    <div class="card-icon">🌐</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Refuerza tus competencias en el idioma inglés, desde vocabulario y gramática hasta comprensión de lectura y comunicación efectiva.</p>
+                </div>
+                <div class="card-actions">
+                    <a href="#" class="btn">Material explicativo</a>
+                    <a href="#" class="btn btn-outline">Ejercicios prácticos</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p class="footer-text">© 2025 Isamar - Plataforma de Aprendizaje para Todos</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+{% endblock %}
+

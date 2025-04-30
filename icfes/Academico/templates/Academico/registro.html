@@ -1,0 +1,269 @@
+{% extends "./base.html" %} {% block content %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isamar</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: #f5f5f5;
+        color: #2e7d32;
+        transition: opacity 0.5s ease;
+      }
+
+      .fade-out {
+        opacity: 0;
+      }
+
+      header {
+        background: linear-gradient(90deg, #61b33b, #8cc63f);
+        padding: 40px 20px;
+        text-align: center;
+        color: white;
+        animation: fadeIn 2s ease-in;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 3em;
+      }
+
+      header p {
+        font-size: 1.2em;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 15px 30px;
+        background-color: #ffeb3b;
+        color: #2e7d32;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 30px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #fdd835;
+        transform: scale(1.05);
+      }
+
+      section {
+        padding: 60px 20px;
+        text-align: center;
+        background-color: white;
+        animation: slideUp 1.5s ease;
+      }
+
+      .features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .feature {
+        background-color: #f9fbe7;
+        border: 2px solid #8cc63f;
+        width: 250px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        position: relative;
+      }
+
+      .feature:hover {
+        transform: translateY(-10px);
+      }
+
+      .feature img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        animation: pulse 2s infinite;
+      }
+
+      footer {
+        background: linear-gradient(90deg, #61b33b, #8cc63f);
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        color: white;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        margin-top: 20px;
+      }
+
+      h2 {
+        color: #2e7d32;
+      }
+
+      h3 {
+        color: #2e7d32;
+      }
+
+      .subtitle {
+        color: white;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Animación del libro */
+      .book {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+        background: url("https://cdn-icons-png.flaticon.com/512/29/29302.png")
+          no-repeat center/contain;
+        animation: bookMove 3s infinite;
+      }
+
+      @keyframes bookMove {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(5deg) scale(1.05);
+        }
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>¡Bienvenido a Isamar!</h1>
+      <p class="subtitle">
+        Recursos para fortalecer tus conocimientos y habilidades
+      </p>
+      <a href="/Academico/grados/" class="btn">¡Empieza tu aventura!</a>
+    
+    </header>
+
+    <section>
+      <h2>¿Qué es Isamar?</h2>
+      <p>
+        Isamar es tu plataforma para potenciar tus habilidades, impulsar tus
+        sueños y alcanzar nuevas metas utilizando recursos digitales de forma
+        gratuita y accesible para todos.
+      </p>
+      <div class="book"></div>
+
+      <form method="post">
+        <!-- {% csrf_token %} -->
+        <label>Correo:</label><br />
+        <input type="email" name="correo" required /><br />
+        <label>Grado / Especialidad:</label><br />
+        <input type="text" name="dato" required /><br />
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <p style="color: red">{{ error }}</p>
+    </section>
+
+    <section style="background-color: #f5f5f5">
+      <h2>¿Por qué ser parte de Isamar?</h2>
+      <div class="features">
+        <div class="feature">
+          <img
+            src="https://img.icons8.com/color/96/000000/student-male--v1.png"
+            alt="Diversión"
+          />
+          <h3>Aprendizaje Divertido</h3>
+          <p>Aprende con métodos dinámicos y retos entretenidos.</p>
+        </div>
+        <div class="feature">
+          <img
+            src="https://img.icons8.com/color/96/000000/clock--v1.png"
+            alt="Ritmo"
+          />
+          <h3>Tu Ritmo, Tu Estilo</h3>
+          <p>Accede cuando quieras y lleva tu propio control de progreso.</p>
+        </div>
+        <div class="feature">
+          <img
+            src="https://img.icons8.com/color/96/000000/shield.png"
+            alt="Confianza"
+          />
+          <h3>Confianza Total</h3>
+          <p>Practica, mejora y enfrenta tus retos con seguridad.</p>
+        </div>
+        <div class="feature">
+          <img
+            src="https://img.icons8.com/color/96/000000/gift.png"
+            alt="Gratis"
+          />
+          <h3>Acceso Gratuito</h3>
+          <p>Todo el contenido es 100% gratis, para siempre.</p>
+        </div>
+      </div>
+      <img src="{% static 'imagenes/isa.jpg' %}" alt="Beneficios de Isamar" />
+    </section>
+
+    <footer>
+      <p>© 2025 Isamar - Plataforma de Aprendizaje para Todos</p>
+    </footer>
+
+    <!-- === AUDIOS === -->
+    <audio id="musica-fondo" loop>
+      <source
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <audio id="sonido-clic">
+      <source
+        src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+
+  </body>
+</html>
+
+{% endblock %}
