@@ -180,11 +180,11 @@
       <p class="subtitle">
         Recursos para fortalecer tus conocimientos y habilidades
       </p>
-      <a href="/Academico/grados/" class="btn">¡Empieza tu aventura!</a>
+      <a href="#section" class="btn">¡Empieza tu aventura!</a>
     
     </header>
 
-    <section>
+    <section id="section">
       <h2>¿Qué es Isamar?</h2>
       <p>
         Isamar es tu plataforma para potenciar tus habilidades, impulsar tus
@@ -194,7 +194,7 @@
       <div class="book"></div>
 
       <h2>Iniciar sesión</h2>
-      <form method="post">
+      <form  method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Ingresar</button>
@@ -244,20 +244,7 @@
       <p>© 2025 Isamar - Plataforma de Aprendizaje para Todos</p>
     </footer>
 
-    <!-- === AUDIOS === -->
-    <audio id="musica-fondo" loop>
-      <source
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-        type="audio/mpeg"
-      />
-    </audio>
-
-    <audio id="sonido-clic">
-      <source
-        src="https://www.soundjay.com/buttons/sounds/button-3.mp3"
-        type="audio/mpeg"
-      />
-    </audio>
+   
 
 
   </body>

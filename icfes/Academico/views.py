@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Estudiante, Simulacro, Profesores, Resultados
 from .forms import LoginForm
-from .utils.decorators import solo_profesores
+from .utils.decorators import solo_profesores, solo_estudiantes
+from django.contrib import messages
 
 def index(request):
     listadoEstudiantes = Estudiante.objects.all()
@@ -19,64 +20,66 @@ def index(request):
     return render(request, 'Academico/index.html', contexto)
 
 def registrarEstudiante(request):
-    """Registra un nuevo estudiante."""
     if request.method == 'POST':
-        nombre_completo = request.POST['txtNombreCompleto']
-        correo = request.POST['txtCorreo']
-        grado = request.POST['txtGrado']
-        fecha_registro = request.POST['txtFechaRegistro']  # Asegúrate de tener este campo en tu formulario
+        nombre = request.POST.get('txtNombreCompleto')
+        correo = request.POST.get('txtCorreo')
+        grado = request.POST.get('txtGrado')
+        fecha = request.POST.get('txtFechaRegistro')
 
-        estudiante = Estudiante.objects.create(
-            nombre_completo=nombre_completo,
-            correo=correo,
-            grado=grado,
-            fecha_registro=fecha_registro
-        )
-        messages.success(request, '¡Estudiante registrado!')
-        return redirect('/')  # Redirige a la página principal o a la lista de estudiantes
-    else:
-        # Si la solicitud no es POST, podrías mostrar un formulario vacío para registrar un estudiante
-        return render(request, 'Academico/registroEstudiante.html')
+        try:
+            Estudiante.objects.create(
+                nombre_completo=nombre,
+                correo=correo,
+                grado=grado,
+                fecha_registro=fecha
+            )
+            messages.success(request, 'Estudiante registrado correctamente.')
+            return redirect('registro_estudiante')
+        except Exception as e:
+            messages.error(request, f'Error al registrar estudiante: {e}')
+            # No hacemos redirect, así se muestra el error en la misma página
+
+    estudiantes = Estudiante.objects.all().order_by('-id_Estudiantes')
+    return render(request, 'Academico/registro-estudiante.html', {'estudiantes': estudiantes})
     
 def edicionEstudiante(request, id_Estudiantes):
     """Muestra el formulario para editar un estudiante específico."""
     estudiante = get_object_or_404(Estudiante, id_Estudiantes=id_Estudiantes)
     return render(request, 'Academico/edicionEstudiante.html', {"estudiante": estudiante})
 
-def editarEstudiante(request):
-    """Guarda los cambios realizados en la información de un estudiante."""
+def editarEstudiante(request, id):
+    try:
+        estudiante = Estudiante.objects.get(pk=id)
+    except Estudiante.DoesNotExist:
+        messages.error(request, 'Estudiante no encontrado.')
+        return redirect('registro_estudiante')
+
     if request.method == 'POST':
-        id_Estudiantes = request.POST['txtIdEstudiantes']  # Asegúrate de que tu formulario tenga este campo oculto
-        nombre_completo = request.POST['txtNombreCompleto']
-        correo = request.POST['txtCorreo']
-        grado = request.POST['txtGrado']
-
+        estudiante.nombre_completo = request.POST.get('txtNombreCompleto')
+        estudiante.correo = request.POST.get('txtCorreo')
+        estudiante.grado = request.POST.get('txtGrado')
+        estudiante.fecha_registro = request.POST.get('txtFechaRegistro')
         try:
-            estudiante = Estudiante.objects.get(id_Estudiantes=id_Estudiantes)
-            estudiante.nombre_completo = nombre_completo
-            estudiante.correo = correo
-            estudiante.grado = grado
             estudiante.save()
-            messages.success(request, '¡Estudiante actualizado!')
-            return redirect('/')  # Redirige a la página principal o a la lista de estudiantes
-        except Estudiante.DoesNotExist:
-            messages.error(request, 'El estudiante no existe.')
-            return redirect('/') # Redirige a una página de error o a la lista de estudiantes
-    else:
-        messages.error(request, 'Método no válido.')
-        return redirect('/')
+            messages.success(request, 'Estudiante actualizado correctamente.')
+            return redirect('registro_estudiante')
+        except Exception as e:
+            messages.error(request, f'Error al actualizar: {e}')
 
-def eliminarEstudiante(request, id_Estudiantes):
-    """Elimina un estudiante específico."""
-    estudiante =get_object_or_404(Estudiante, id_Estudiantes=id_Estudiantes)
-    estudiante.delete()
-    messages.success(request, '¡Estudiante eliminado!')
-    return redirect('/')  # Redirige a la página principal o a la lista de estudiantes
+    return render(request, 'Academico/edicion-estudiante.html', {'estudiante': estudiante})
 
+def eliminarEstudiante(request, id):
+    try:
+        estudiante = Estudiante.objects.get(pk=id)
+        estudiante.delete()
+        messages.success(request, 'Estudiante eliminado correctamente.')
+    except Estudiante.DoesNotExist:
+        messages.error(request, 'Estudiante no encontrado.')
+    except Exception as e:
+        messages.error(request, f'Error al eliminar: {e}')
+    return redirect('registro_estudiante')
 
-def grados(request):
-    return render(request, 'Academico/grados.html')
-
+@solo_estudiantes
 def materiasNovenoDecimo(request):
     return render(request, 'Academico/materiasNoveno.html')
 
@@ -96,7 +99,7 @@ def registro(request):
                     estudiante = Estudiante.objects.get(correo=correo)
                     request.session['usuario_id'] = estudiante.id_Estudiantes
                     request.session['rol'] = 'estudiante'
-                    return redirect('/Academico/materias-noveno-decimo/')
+                    return redirect('/Academico/grados/')
                 else:
                     form.add_error(None, 'Estudiante no encontrado')
             elif rol == 'profesor':
@@ -120,10 +123,14 @@ def logout(request):
 
 
 
-def vista_para_estudiantes(request):
+""" def vista_para_estudiantes(request):
     if request.session.get('rol') != 'estudiante':
-        return redirect('login')  # o mostrar error
+        return redirect('login')  # o mostrar error """
 
 @solo_profesores
 def index(request):
     return render(request, 'Academico/index.html')
+
+@solo_estudiantes
+def grados_9_10(request):
+    return render(request, 'Academico/grados.html')

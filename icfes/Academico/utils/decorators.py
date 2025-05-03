@@ -6,3 +6,10 @@ def solo_profesores(view_func):
             return redirect('login')
         return view_func(request, *args, **kwargs)
     return wrapper
+
+def solo_estudiantes(view_func):
+    def wrapper(request, *args, **kwargs):
+        if request.session.get('rol') != 'estudiante':
+            return redirect('login')
+        return view_func(request, *args, **kwargs)
+    return wrapper

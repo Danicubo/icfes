@@ -1,494 +1,593 @@
-{% extends "./base.html" %}
-
-{% block content %}
+{% extends "./base.html" %} {% block content %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ISAMAR.SIMULACROS - Selección de Grado</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <!-- Animate.css -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
     <style>
-      
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
-        
-        body {
-            background: linear-gradient(-45deg, #ffec61, #f7b733, #4db33d, #3bb78f);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-        
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .main-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .title {
-            font-size: 2.8rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 10px;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: textPulse 2s infinite alternate;
-        }
-        
-        @keyframes textPulse {
-            from {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            }
-            to {
-                text-shadow: 2px 2px 15px rgba(255, 214, 0, 0.5);
-            }
-        }
-        
-        .subtitle {
-            color: #4db33d;
-            text-align: center;
-            font-size: 1.6rem;
-            margin-bottom: 50px;
-            font-weight: 600;
-            position: relative;
-            animation: slideIn 1s ease-out;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .subtitle:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 3px;
-            background: linear-gradient(90deg, #ffda44, #4db33d);
-            border-radius: 3px;
-        }
-        
-        .grade-container {
-            perspective: 1000px;
-        }
-        
-        .grade-option {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            margin-bottom: 40px;
-            text-align: center;
-            padding: 20px;
-            border-radius: 20px;
-            transform-style: preserve-3d;
-        }
-        
-        .grade-option:hover {
-            transform: translateY(-15px) rotateY(10deg);
-        }
-        
-        .grade-option:hover .grade-circle {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transform: scale(1.05);
-        }
-        
-        .grade-circle {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            border: 8px solid white;
-            transition: all 0.4s ease;
-            z-index: 1;
-        }
-        
-        .grade-9-10 {
-            background: linear-gradient(135deg, #ffda44, #ff9900);
-            animation: shine 3s infinite alternate;
-        }
-        
-        .grade-11 {
-            background: linear-gradient(135deg, #66bb6a, #1b5e20);
-            animation: shine 3s infinite alternate-reverse;
-        }
-        
-        @keyframes shine {
-            from {
-                box-shadow: 0 0 20px rgba(255, 218, 68, 0.5);
-            }
-            to {
-                box-shadow: 0 0 40px rgba(255, 218, 68, 0.8);
-            }
-        }
-        
-        .grade-text {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-top: 15px;
-            color: #333;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .grade-option:hover .grade-text {
-            transform: scale(1.1);
-            color: #ff9900;
-        }
-        
-        .grade-option:nth-child(2):hover .grade-text {
-            color: #4db33d;
-        }
-        
-        .continue-btn {
-            background: linear-gradient(45deg, #ffda44, #ff9900, #4db33d, #1b5e20);
-            background-size: 300% 300%;
-            animation: gradientShift 5s ease infinite;
-            color: white;
-            border: none;
-            padding: 15px 60px;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        .continue-btn:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .continue-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-            z-index: -1;
-        }
-        
-        .continue-btn:hover:before {
-            left: 100%;
-            animation: shine 1.5s infinite;
-        }
-        
-        .navigation {
-            margin-bottom: 30px;
-            display: flex;
-        }
-        
-        .nav-button {
-            font-size: 28px;
-            color: #ff9900;
-            background: none;
-            border: none;
-            cursor: pointer;
-            margin-right: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .nav-button:hover {
-            color: #4db33d;
-            transform: scale(1.2) rotate(5deg);
-        }
-        
-        .icon-overlay {
-            position: absolute;
-            opacity: 0.2;
-            font-size: 8rem;
-            color: rgba(255, 255, 255, 0.8);
-            animation: spinSlow 15s linear infinite;
-        }
-        
-        @keyframes spinSlow {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .particles-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 0;
-        }
-        
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: floatUp 15s infinite ease-in;
-        }
-        
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100%) translateX(0) scale(0.3);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            30% {
-                transform: translateY(50%) translateX(30px) scale(0.7);
-            }
-            50% {
-                transform: translateY(0%) translateX(-30px) scale(1);
-            }
-            70% {
-                transform: translateY(-50%) translateX(30px) scale(0.7);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100%) translateX(0) scale(0.3);
-                opacity: 0;
-            }
-        }
-        
-        .shimmer {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255,255,255,0) 0%, 
-                rgba(255,255,255,0.2) 50%, 
-                rgba(255,255,255,0) 100%);
-            animation: shimmerEffect 3s infinite;
-        }
-        
-        @keyframes shimmerEffect {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            opacity: 0;
-            animation: confettiFall 8s ease-in infinite;
-        }
-        
-        @keyframes confettiFall {
-            0% {
-                top: -100px;
-                opacity: 1;
-                transform: rotate(0deg);
-            }
-            100% {
-                top: 1000px;
-                opacity: 0;
-                transform: rotate(720deg);
-            }
-        }
-   
-    </style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap");
 
-</head>
-<body>
+      body {
+        background: linear-gradient(-45deg, #ffec61, #f7b733, #4db33d, #3bb78f);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        font-family: "Montserrat", sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 20px 0;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .main-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 10px;
+        color: #333;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        animation: textPulse 2s infinite alternate;
+      }
+
+      @keyframes textPulse {
+        from {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        to {
+          text-shadow: 2px 2px 15px rgba(255, 214, 0, 0.5);
+        }
+      }
+
+      .subtitle {
+        color: #4db33d;
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 50px;
+        font-weight: 600;
+        position: relative;
+        animation: slideIn 1s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .subtitle:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 180px;
+        height: 3px;
+        background: linear-gradient(90deg, #ffda44, #4db33d);
+        border-radius: 3px;
+      }
+
+      .grade-container {
+        perspective: 1000px;
+      }
+
+      .grade-option {
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+        margin-bottom: 40px;
+        text-align: center;
+        padding: 20px;
+        border-radius: 20px;
+        transform-style: preserve-3d;
+      }
+
+      .grade-option:hover {
+        transform: translateY(-15px) rotateY(10deg);
+      }
+
+      .grade-option:hover .grade-circle {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+      }
+
+      .grade-circle {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        color: white;
+        font-size: 3rem;
+        font-weight: bold;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        border: 8px solid white;
+        transition: all 0.4s ease;
+        z-index: 1;
+      }
+
+      .grade-9-10 {
+        background: linear-gradient(135deg, #ffda44, #ff9900);
+        animation: shine 3s infinite alternate;
+      }
+
+      .grade-11 {
+        background: linear-gradient(135deg, #66bb6a, #1b5e20);
+        animation: shine 3s infinite alternate-reverse;
+      }
+
+      @keyframes shine {
+        from {
+          box-shadow: 0 0 20px rgba(255, 218, 68, 0.5);
+        }
+        to {
+          box-shadow: 0 0 40px rgba(255, 218, 68, 0.8);
+        }
+      }
+
+      .grade-text {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 15px;
+        color: #333;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .grade-option:hover .grade-text {
+        transform: scale(1.1);
+        color: #ff9900;
+      }
+
+      .grade-option:nth-child(2):hover .grade-text {
+        color: #4db33d;
+      }
+
+      .continue-btn {
+        background: linear-gradient(45deg, #ffda44, #ff9900, #4db33d, #1b5e20);
+        background-size: 300% 300%;
+        animation: gradientShift 5s ease infinite;
+        color: white;
+        border: none;
+        padding: 15px 60px;
+        font-size: 1.3rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .continue-btn:hover {
+        transform: scale(1.05) translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .continue-btn:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+        z-index: -1;
+      }
+
+      .continue-btn:hover:before {
+        left: 100%;
+        animation: shine 1.5s infinite;
+      }
+
+      .navigation {
+        margin-bottom: 30px;
+        display: flex;
+      }
+
+      .nav-button {
+        font-size: 28px;
+        color: #ff9900;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin-right: 20px;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .nav-button:hover {
+        color: #4db33d;
+        transform: scale(1.2) rotate(5deg);
+      }
+
+      .icon-overlay {
+        position: absolute;
+        opacity: 0.2;
+        font-size: 8rem;
+        color: rgba(255, 255, 255, 0.8);
+        animation: spinSlow 15s linear infinite;
+      }
+
+      @keyframes spinSlow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .particles-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        animation: floatUp 15s infinite ease-in;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(100%) translateX(0) scale(0.3);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        30% {
+          transform: translateY(50%) translateX(30px) scale(0.7);
+        }
+        50% {
+          transform: translateY(0%) translateX(-30px) scale(1);
+        }
+        70% {
+          transform: translateY(-50%) translateX(30px) scale(0.7);
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100%) translateX(0) scale(0.3);
+          opacity: 0;
+        }
+      }
+
+      .shimmer {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.2) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        animation: shimmerEffect 3s infinite;
+      }
+
+      @keyframes shimmerEffect {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        opacity: 0;
+        animation: confettiFall 8s ease-in infinite;
+      }
+
+      @keyframes confettiFall {
+        0% {
+          top: -100px;
+          opacity: 1;
+          transform: rotate(0deg);
+        }
+        100% {
+          top: 1000px;
+          opacity: 0;
+          transform: rotate(720deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="header">
-        <!-- Header Content -->
+      <!-- Header Content -->
     </div>
 
     <div class="container">
-        <div class="main-container animate__animated animate__fadeIn">
-            <div class="particles-container">
-                <!-- Generated particles -->
-                <div class="particle" style="width:15px;height:15px;background:#ffeb3b;left:10%;animation-delay:0s;"></div>
-                <div class="particle" style="width:12px;height:12px;background:#4db33d;left:25%;animation-delay:2s;"></div>
-                <div class="particle" style="width:18px;height:18px;background:#ff9800;left:40%;animation-delay:4s;"></div>
-                <div class="particle" style="width:10px;height:10px;background:#8bc34a;left:60%;animation-delay:6s;"></div>
-                <div class="particle" style="width:14px;height:14px;background:#ffc107;left:75%;animation-delay:8s;"></div>
-                <div class="particle" style="width:16px;height:16px;background:#4caf50;left:90%;animation-delay:10s;"></div>
-                
-                <!-- Confetti elements -->
-                <div class="confetti" style="background:#ffeb3b;left:15%;animation-delay:1s;"></div>
-                <div class="confetti" style="background:#4db33d;left:30%;animation-delay:3s;"></div>
-                <div class="confetti" style="background:#ff9800;left:45%;animation-delay:5s;"></div>
-                <div class="confetti" style="background:#8bc34a;left:60%;animation-delay:7s;"></div>
-                <div class="confetti" style="background:#ffc107;left:75%;animation-delay:9s;"></div>
-                <div class="confetti" style="background:#4caf50;left:90%;animation-delay:2s;"></div>
-            </div>
+      <div class="main-container animate__animated animate__fadeIn">
+        <div class="particles-container">
+          <!-- Generated particles -->
+          <div
+            class="particle"
+            style="
+              width: 15px;
+              height: 15px;
+              background: #ffeb3b;
+              left: 10%;
+              animation-delay: 0s;
+            "
+          ></div>
+          <div
+            class="particle"
+            style="
+              width: 12px;
+              height: 12px;
+              background: #4db33d;
+              left: 25%;
+              animation-delay: 2s;
+            "
+          ></div>
+          <div
+            class="particle"
+            style="
+              width: 18px;
+              height: 18px;
+              background: #ff9800;
+              left: 40%;
+              animation-delay: 4s;
+            "
+          ></div>
+          <div
+            class="particle"
+            style="
+              width: 10px;
+              height: 10px;
+              background: #8bc34a;
+              left: 60%;
+              animation-delay: 6s;
+            "
+          ></div>
+          <div
+            class="particle"
+            style="
+              width: 14px;
+              height: 14px;
+              background: #ffc107;
+              left: 75%;
+              animation-delay: 8s;
+            "
+          ></div>
+          <div
+            class="particle"
+            style="
+              width: 16px;
+              height: 16px;
+              background: #4caf50;
+              left: 90%;
+              animation-delay: 10s;
+            "
+          ></div>
 
-            <div class="navigation">
-                <button class="nav-button animate__animated animate__bounceIn animate__delay-1s">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <button class="nav-button animate__animated animate__bounceIn animate__delay-1s">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <h1 class="title animate__animated animate__fadeInDown">BIENVENIDO A ISAMAR SIMULACROS</h1>
-            <h3 class="subtitle animate__animated animate__fadeInUp animate__delay-1s">INDICA QUE GRADO ESTAS CURSANDO</h3>
-            
-            <div class="row justify-content-center grade-container">
-                <div class="col-md-5">
-                    <div class="grade-option animate__animated animate__zoomIn animate__delay-1s" onclick="redirectToGrade910()">
-                        <div class="grade-circle grade-9-10">
-                            <span>9-10</span>
-                            <i class="fas fa-book-reader icon-overlay"></i>
-                            <div class="shimmer"></div>
-                        </div>
-                        <div class="grade-text">GRADO 9 Y 10</div>
-                    </div>
-                </div>
-                
-                <div class="col-md-5">
-                    <div class="grade-option animate__animated animate__zoomIn animate__delay-1s">
-                        <div class="grade-circle grade-11">
-                            <span>11</span>
-                            <i class="fas fa-graduation-cap icon-overlay"></i>
-                            <div class="shimmer"></div>
-                        </div>
-                        <div class="grade-text">GRADO 11</div>
-                    </div>
-                </div>
-            </div>
-            
+          <!-- Confetti elements -->
+          <div
+            class="confetti"
+            style="background: #ffeb3b; left: 15%; animation-delay: 1s"
+          ></div>
+          <div
+            class="confetti"
+            style="background: #4db33d; left: 30%; animation-delay: 3s"
+          ></div>
+          <div
+            class="confetti"
+            style="background: #ff9800; left: 45%; animation-delay: 5s"
+          ></div>
+          <div
+            class="confetti"
+            style="background: #8bc34a; left: 60%; animation-delay: 7s"
+          ></div>
+          <div
+            class="confetti"
+            style="background: #ffc107; left: 75%; animation-delay: 9s"
+          ></div>
+          <div
+            class="confetti"
+            style="background: #4caf50; left: 90%; animation-delay: 2s"
+          ></div>
         </div>
+
+        <div class="navigation">
+          <button
+            class="nav-button animate__animated animate__bounceIn animate__delay-1s"
+          >
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <button
+            class="nav-button animate__animated animate__bounceIn animate__delay-1s"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <h1 class="title animate__animated animate__fadeInDown">
+          BIENVENIDO A ISAMAR SIMULACROS
+        </h1>
+        <h3
+          class="subtitle animate__animated animate__fadeInUp animate__delay-1s"
+        >
+          INDICA QUE GRADO ESTAS CURSANDO
+        </h3>
+
+        <div class="row justify-content-center grade-container">
+          <div class="col-md-5">
+            <a class="text-decoration-none"
+              href="/Academico/materias-noveno-decimo"
+            >
+              <div
+                class="grade-option animate__animated animate__zoomIn animate__delay-1s"
+              >
+                <div class="grade-circle grade-9-10">
+                  <span>9-10</span>
+                  <i class="fas fa-book-reader icon-overlay"></i>
+                  <div class="shimmer"></div>
+                </div>
+                <div class="grade-text">GRADO 9 Y 10</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-5">
+            <div
+              class="grade-option animate__animated animate__zoomIn animate__delay-1s"
+            >
+              <div class="grade-circle grade-11">
+                <span>11</span>
+                <i class="fas fa-graduation-cap icon-overlay"></i>
+                <div class="shimmer"></div>
+              </div>
+              <div class="grade-text">GRADO 11</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        function redirectToGrade910() {
-    // Guardar la selección en localStorage (opcional)
-    localStorage.setItem('selectedGrade', '9-10');
-    
-    // Redirigir a la página de materias para 9° y 10°
-    window.location.href = '/materias-noveno-decimo/';
-}
-        // Script para añadir elementos confeti dinámicamente
-        document.addEventListener('DOMContentLoaded', function() {
-            const particles = document.querySelector('.particles-container')
-            
-            // Crear partículas adicionales
-            for (let i = 0; i < 20; i++) {
-                const size = Math.random() * 8 + 5; // 5-13px
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.left = `${Math.random() * 100}%`;
-                confetti.style.animationDelay = `${Math.random() * 5}s`;
-                confetti.style.background = getRandomColor();
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-                
-                particles.appendChild(confetti);
-            }
-            
-            // Función para obtener colores aleatorios
-            function getRandomColor() {
-                const colors = ['#ffeb3b', '#ffc107', '#ff9800', '#4caf50', '#8bc34a', '#4db33d'];
-                return colors[Math.floor(Math.random() * colors.length)];
-            }
-            
-            // Hacer que los círculos respondan al movimiento del mouse
-            const gradeCircles = document.querySelectorAll('.grade-circle');
-            
-            document.addEventListener('mousemove', function(e) {
-                const mouseX = e.clientX / window.innerWidth;
-                const mouseY = e.clientY / window.innerHeight;
-                
-                gradeCircles.forEach(circle => {
-                    const offsetX = (mouseX - 0.5) * 20;
-                    const offsetY = (mouseY - 0.5) * 20;
-                    circle.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-                });
-            });
+      // Script para añadir elementos confeti dinámicamente
+      document.addEventListener("DOMContentLoaded", function () {
+        const particles = document.querySelector(".particles-container");
+
+        // Crear partículas adicionales
+        for (let i = 0; i < 20; i++) {
+          const size = Math.random() * 8 + 5; // 5-13px
+          const confetti = document.createElement("div");
+          confetti.className = "confetti";
+          confetti.style.width = `${size}px`;
+          confetti.style.height = `${size}px`;
+          confetti.style.left = `${Math.random() * 100}%`;
+          confetti.style.animationDelay = `${Math.random() * 5}s`;
+          confetti.style.background = getRandomColor();
+          confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "0";
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+          particles.appendChild(confetti);
+        }
+
+        // Función para obtener colores aleatorios
+        function getRandomColor() {
+          const colors = [
+            "#ffeb3b",
+            "#ffc107",
+            "#ff9800",
+            "#4caf50",
+            "#8bc34a",
+            "#4db33d",
+          ];
+          return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Hacer que los círculos respondan al movimiento del mouse
+        const gradeCircles = document.querySelectorAll(".grade-circle");
+
+        document.addEventListener("mousemove", function (e) {
+          const mouseX = e.clientX / window.innerWidth;
+          const mouseY = e.clientY / window.innerHeight;
+
+          gradeCircles.forEach((circle) => {
+            const offsetX = (mouseX - 0.5) * 20;
+            const offsetY = (mouseY - 0.5) * 20;
+            circle.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+          });
         });
+      });
     </script>
-    
-</body>
+  </body>
 </html>
 {% endblock %}
