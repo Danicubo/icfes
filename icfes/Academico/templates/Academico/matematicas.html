@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadernillo Matemáticas 9° Grado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .cover {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .intro {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .question {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .options {
+            margin-top: 10px;
+        }
+        .option {
+            margin: 5px 0;
+        }
+        .figure {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .figure img {
+            max-width: 100%;
+        }
+        .graph {
+            height: 300px;
+            width: 100%;
+            margin: 15px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+        .graph-line {
+            position: absolute;
+            background-color: #007bff;
+            height: 2px;
+        }
+        .graph-point {
+            position: absolute;
+            height: 8px;
+            width: 8px;
+            background-color: #007bff;
+            border-radius: 50%;
+            transform: translate(-4px, -4px);
+        }
+        .graph-axis {
+            position: absolute;
+            background-color: #333;
+        }
+        .book-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #007bff;
+            margin-right: 5px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .shape {
+            margin: 15px auto;
+            position: relative;
+        }
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 173px solid #007bff;
+            margin: 0 auto;
+        }
+        .hexagon {
+            margin: 15px auto;
+            width: 200px;
+            height: 173px;
+            background-color: #007bff;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+        }
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 57.7px solid #007bff;
+        }
+        .hexagon:after {
+            top: 100%;
+            border-top: 57.7px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cover">
+        <h1>9° GRADO</h1>
+        <h2>2023</h2>
+        <h3>Matemáticas</h3>
+        <h4>Cuadernillo 1</h4>
+    </div>
+
+    <div class="intro">
+        <h3>¡Hola!</h3>
+        <p>Queremos agradecer tu participación. Antes de empezar a responder, es importante que tengas en cuenta lo siguiente:</p>
+        <ul>
+            <li>Lee cada pregunta cuidadosamente y elige UNA opción.</li>
+            <li>En este cuadernillo encuentras las preguntas y la Hoja de respuestas.</li>
+            <li>Por favor, responde TODAS las preguntas.</li>
+            <li>Si no entiendes algo o si tienes alguna inquietud sobre cómo llenar la Hoja de respuestas, pídele ayuda a tu docente.</li>
+        </ul>
+        <p><strong>N.° de preguntas: 20</strong></p>
+    </div>
+
+    <div class="question" id="question1">
+        <h3>1.</h3>
+        <p>La gráfica muestra la rapidez de un helicóptero durante los primeros 120 segundos de un recorrido.</p>
+        
+        <div class="graph">
+            <!-- Creación de ejes -->
+            <div class="graph-axis" style="bottom: 50px; left: 50px; width: 700px; height: 2px;"></div>
+            <div class="graph-axis" style="bottom: 50px; left: 50px; width: 2px; height: 250px;"></div>
+            
+            <!-- Puntos y líneas -->
+            <div class="graph-point" style="bottom: 50px; left: 50px;"></div>
+            <div class="graph-point" style="bottom: 50px; left: 100px;"></div>
+            <div class="graph-line" style="bottom: 50px; left: 50px; width: 50px;"></div>
+            
+            <div class="graph-point" style="bottom: 100px; left: 100px;"></div>
+            <div class="graph-line" style="bottom: 50px; left: 100px; width: 50px; transform: rotate(45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 150px; left: 150px;"></div>
+            <div class="graph-line" style="bottom: 100px; left: 100px; width: 70.7px; transform: rotate(45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 200px; left: 200px;"></div>
+            <div class="graph-line" style="bottom: 150px; left: 150px; width: 70.7px; transform: rotate(45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 250px; left: 250px;"></div>
+            <div class="graph-line" style="bottom: 200px; left: 200px; width: 70.7px; transform: rotate(45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 250px; left: 350px;"></div>
+            <div class="graph-line" style="bottom: 250px; left: 250px; width: 100px;"></div>
+            
+            <div class="graph-point" style="bottom: 200px; left: 400px;"></div>
+            <div class="graph-line" style="bottom: 250px; left: 350px; width: 70.7px; transform: rotate(-45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 150px; left: 450px;"></div>
+            <div class="graph-line" style="bottom: 200px; left: 400px; width: 70.7px; transform: rotate(-45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 100px; left: 500px;"></div>
+            <div class="graph-line" style="bottom: 150px; left: 450px; width: 70.7px; transform: rotate(-45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 50px; left: 550px;"></div>
+            <div class="graph-line" style="bottom: 100px; left: 500px; width: 70.7px; transform: rotate(-45deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 50px; left: 700px;"></div>
+            <div class="graph-line" style="bottom: 50px; left: 550px; width: 150px;"></div>
+            
+            <!-- Etiquetas de ejes -->
+            <div style="position: absolute; bottom: 20px; left: 375px; text-align: center; width: 100px;">Tiempo (s)</div>
+            <div style="position: absolute; bottom: 170px; left: 5px; transform: rotate(-90deg); width: 100px; text-align: center;">Rapidez (km/h)</div>
+            
+            <!-- Valores de ejes -->
+            <div style="position: absolute; bottom: 35px; left: 50px;">0</div>
+            <div style="position: absolute; bottom: 35px; left: 100px;">10</div>
+            <div style="position: absolute; bottom: 35px; left: 150px;">20</div>
+            <div style="position: absolute; bottom: 35px; left: 200px;">30</div>
+            <div style="position: absolute; bottom: 35px; left: 250px;">40</div>
+            <div style="position: absolute; bottom: 35px; left: 300px;">50</div>
+            <div style="position: absolute; bottom: 35px; left: 350px;">60</div>
+            <div style="position: absolute; bottom: 35px; left: 400px;">70</div>
+            <div style="position: absolute; bottom: 35px; left: 450px;">80</div>
+            <div style="position: absolute; bottom: 35px; left: 500px;">90</div>
+            <div style="position: absolute; bottom: 35px; left: 550px;">100</div>
+            <div style="position: absolute; bottom: 35px; left: 600px;">110</div>
+            <div style="position: absolute; bottom: 35px; left: 650px;">120</div>
+            
+            <div style="position: absolute; bottom: 50px; left: 30px;">0</div>
+            <div style="position: absolute; bottom: 100px; left: 10px;">50</div>
+            <div style="position: absolute; bottom: 150px; left: 0px;">100</div>
+            <div style="position: absolute; bottom: 200px; left: 0px;">150</div>
+            <div style="position: absolute; bottom: 250px; left: 0px;">200</div>
+            <div style="position: absolute; bottom: 300px; left: 0px;">250</div>
+        </div>
+        
+        <p>¿Cuál fue la máxima rapidez del helicóptero durante los primeros 120 segundos del recorrido?</p>
+        
+        <div class="options">
+            <div class="option">A. 300 km/h.</div>
+            <div class="option">B. 250 km/h.</div>
+            <div class="option">C. 200 km/h.</div>
+            <div class="option">D. 150 km/h.</div>
+        </div>
+    </div>
+
+    <div class="question" id="question2">
+        <h3>2.</h3>
+        <p>Felipe tiene $750.000 para viajar y sabe que cada día gastará $50.000. Si y representa la cantidad de dinero que le queda cada día del viaje, y x la cantidad de días que transcurren del viaje, ¿cuál de las siguientes ecuaciones le permitirá saber a Felipe qué día se quedará sin dinero?</p>
+        
+        <div class="options">
+            <div class="option">A. y = 700.000 – x</div>
+            <div class="option">B. y = 750.000x – 50.000</div>
+            <div class="option">C. y = 750.000 – 50.000x</div>
+            <div class="option">D. y = 50.000x + 750.000</div>
+        </div>
+    </div>
+
+    <div class="question" id="question3">
+        <h3>3.</h3>
+        <p>Para una competencia, un atleta realiza un salto en la pista como muestra la figura.</p>
+        
+        <div class="figure">
+            <svg width="400" height="200">
+                <!-- Eje vertical con marcas -->
+                <line x1="50" y1="20" x2="50" y2="180" stroke="black" stroke-width="2"/>
+                <line x1="45" y1="170" x2="55" y2="170" stroke="black" stroke-width="2"/>
+                <line x1="45" y1="140" x2="55" y2="140" stroke="black" stroke-width="2"/>
+                <line x1="45" y1="110" x2="55" y2="110" stroke="black" stroke-width="2"/>
+                <line x1="45" y1="80" x2="55" y2="80" stroke="black" stroke-width="2"/>
+                <line x1="45" y1="50" x2="55" y2="50" stroke="black" stroke-width="2"/>
+                <line x1="45" y1="20" x2="55" y2="20" stroke="black" stroke-width="2"/>
+                
+                <!-- Etiquetas del eje -->
+                <text x="30" y="175" font-size="12">0 m</text>
+                <text x="30" y="145" font-size="12">1 m</text>
+                <text x="30" y="115" font-size="12">2 m</text>
+                <text x="30" y="85" font-size="12">3 m</text>
+                <text x="30" y="55" font-size="12">4 m</text>
+                
+                <!-- Trayectoria del salto -->
+                <path d="M 50 170 C 100 50, 200 50, 350 170" stroke="red" stroke-width="2" fill="none"/>
+                
+                <!-- Línea horizontal de distancia -->
+                <line x1="50" y1="170" x2="350" y2="170" stroke="blue" stroke-width="1" stroke-dasharray="5,5"/>
+                
+                <!-- Líneas verticales de inicio y fin -->
+                <line x1="50" y1="165" x2="50" y2="175" stroke="blue" stroke-width="1"/>
+                <line x1="350" y1="165" x2="350" y2="175" stroke="blue" stroke-width="1"/>
+            </svg>
+        </div>
+        
+        <p>Teniendo en cuenta la figura, ¿cuál fue la distancia del salto realizado por el atleta?</p>
+        
+        <div class="options">
+            <div class="option">A. 3,8 m.</div>
+            <div class="option">B. 3,6 m.</div>
+            <div class="option">C. 3,4 m.</div>
+            <div class="option">D. 3,2 m.</div>
+        </div>
+    </div>
+
+    <div class="question" id="question4">
+        <h3>4.</h3>
+        <p>En una empresa quieren saber la cantidad de alfombra necesaria para cubrir el piso de sus seis oficinas, cuyo plano se muestra en la figura.</p>
+        
+        <div class="figure">
+            <svg width="400" height="250">
+                <!-- Plano de oficinas -->
+                <rect x="50" y="50" width="100" height="80" stroke="black" fill="none" stroke-width="2"/>
+                <rect x="150" y="50" width="100" height="80" stroke="black" fill="none" stroke-width="2"/>
+                <rect x="250" y="50" width="100" height="80" stroke="black" fill="none" stroke-width="2"/>
+                <rect x="50" y="130" width="100" height="80" stroke="black" fill="none" stroke-width="2"/>
+                <rect x="150" y="130" width="100" height="80" stroke="black" fill="none" stroke-width="2"/>
+                <rect x="250" y="130" width="100" height="80" stroke="black" fill="none" stroke-width="2"/>
+                
+                <!-- Números de las oficinas -->
+                <text x="95" y="90" font-size="16" font-weight="bold">1</text>
+                <text x="195" y="90" font-size="16" font-weight="bold">2</text>
+                <text x="295" y="90" font-size="16" font-weight="bold">3</text>
+                <text x="95" y="170" font-size="16" font-weight="bold">4</text>
+                <text x="195" y="170" font-size="16" font-weight="bold">5</text>
+                <text x="295" y="170" font-size="16" font-weight="bold">6</text>
+            </svg>
+        </div>
+        
+        <p>¿Cuál proceso permite hallar el área de todas las oficinas?</p>
+        
+        <div class="options">
+            <div class="option">A. Multiplicar por tres el área correspondiente a la oficina 3.</div>
+            <div class="option">B. Adicionar el área de las oficinas 4, 5 y 6 y multiplicar por dos.</div>
+            <div class="option">C. Establecer el área de la oficina 5, y multiplicarla por las veces que esta cabe en todas las oficinas.</div>
+            <div class="option">D. Determinar el área de la oficina 2 y multiplicar por seis, que corresponde al total de oficinas.</div>
+        </div>
+    </div>
+
+    <div class="question" id="question5">
+        <h3>5.</h3>
+        <p>Juan cuenta con 4 distintos tipos de tela y con suelas de 3 calibres (delgada, mediana y gruesa), para fabricar zapatos. Los diseños obtenidos se muestran en la figura.</p>
+        
+        <div class="figure">
+            <svg width="400" height="150">
+                <!-- Tabla de combinaciones -->
+                <rect x="50" y="50" width="300" height="80" stroke="black" fill="none" stroke-width="2"/>
+                <line x1="150" y1="50" x2="150" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="200" y1="50" x2="200" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="250" y1="50" x2="250" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="50" y1="80" x2="350" y2="80" stroke="black" stroke-width="2"/>
+                
+                <!-- Texto de la tabla -->
+                <text x="75" y="70" font-size="12">4×3</text>
+                <text x="170" y="70" font-size="12">Delgada</text>
+                <text x="215" y="70" font-size="12">Mediana</text>
+                <text x="285" y="70" font-size="12">Gruesa</text>
+                
+                <!-- Símbolos de telas -->
+                <circle cx="100" cy="110" r="10" stroke="black" fill="none" stroke-width="1"/>
+                <text x="95" y="115" font-size="16">♢</text>
+                <text x="125" y="115" font-size="16">◯</text>
+                <text x="175" y="115" font-size="16">▢</text>
+                <text x="225" y="115" font-size="16">△</text>
+                <text x="275" y="115" font-size="16">☆</text>
+                <text x="325" y="115" font-size="16">♡</text>
+            </svg>
+        </div>
+        
+        <p>Si se escoge al azar uno de los diseños de zapato que Juan elabora, ¿cuál de los siguientes eventos tiene probabilidad de ocurrir?</p>
+        
+        <div class="options">
+            <div class="option">A. Que el diseño escogido tenga tela tipo △ y suela gruesa.</div>
+            <div class="option">B. Que el diseño escogido tenga suela delgada y gruesa.</div>
+            <div class="option">C. Que el diseño escogido tenga suela calibre mediano.</div>
+            <div class="option">D. Que el diseño escogido tenga tela tipo ♢ o tela tipo ◯.</div>
+        </div>
+    </div>
+
+    <div class="question" id="question6">
+        <h3>6.</h3>
+        <p>En una oficina la moda de las tallas de zapatos es 36. ¿Cuál de las siguientes tablas puede representar correctamente las tallas de zapatos de esa oficina?</p>
+        
+        <div class="options">
+            <div class="option">
+                <strong>A.</strong>
+                <table class="table">
+                    <tr>
+                        <th>Talla</th>
+                        <th>Cantidad de personas</th>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="option">
+                <strong>B.</strong>
+                <table class="table">
+                    <tr>
+                        <th>Talla</th>
+                        <th>Cantidad de personas</th>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="option">
+                <strong>C.</strong>
+                <table class="table">
+                    <tr>
+                        <th>Talla</th>
+                        <th>Cantidad de personas</th>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="option">
+                <strong>D.</strong>
+                <table class="table">
+                    <tr>
+                        <th>Talla</th>
+                        <th>Cantidad de personas</th>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="question" id="question7">
+        <h3>7.</h3>
+        <p>En una finca se utilizó una manguera para llenar un tanque con agua. La gráfica muestra la cantidad de agua que había en el tanque en algunas horas del día.</p>
+        
+        <div class="graph" style="height: 250px;">
+            <!-- Creación de ejes -->
+            <div class="graph-axis" style="bottom: 50px; left: 50px; width: 600px; height: 2px;"></div>
+            <div class="graph-axis" style="bottom: 50px; left: 50px; width: 2px; height: 180px;"></div>
+            
+            <!-- Puntos y líneas -->
+            <div class="graph-point" style="bottom: 50px; left: 50px;"></div>
+            <div class="graph-point" style="bottom: 60px; left: 100px;"></div>
+            <div class="graph-line" style="bottom: 50px; left: 50px; width: 50px; transform: rotate(11deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 80px; left: 150px;"></div>
+            <div class="graph-line" style="bottom: 60px; left: 100px; width: 50px; transform: rotate(22deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 120px; left: 200px;"></div>
+            <div class="graph-line" style="bottom: 80px; left: 150px; width: 50px; transform: rotate(38deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 160px; left: 250px;"></div>
+            <div class="graph-line" style="bottom: 120px; left: 200px; width: 50px; transform: rotate(38deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 180px; left: 300px;"></div>
+            <div class="graph-line" style="bottom: 160px; left: 250px; width: 50px; transform: rotate(22deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 160px; left: 350px;"></div>
+            <div class="graph-line" style="bottom: 180px; left: 300px; width: 50px; transform: rotate(-22deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 120px; left: 400px;"></div>
+            <div class="graph-line" style="bottom: 160px; left: 350px; width: 50px; transform: rotate(-38deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 90px; left: 450px;"></div>
+            <div class="graph-line" style="bottom: 120px; left: 400px; width: 50px; transform: rotate(-30deg); transform-origin: left bottom;"></div>
+            
+            <div class="graph-point" style="bottom: 70px; left: 500px;"></div>
+            <div class="graph-line" style="bottom: 90px; left: 450px; width: 50px; transform: rotate(-22deg); transform-origin: left bottom;"></div>
+            
+            <!-- Etiquetas de ejes -->
+            <div style="position: absolute; bottom: 20px; left: 300px; text-align: center; width: 150px;">Hora del día</div>
+            <div style="position: absolute; bottom: 140px; left: 5px; transform: rotate(-90deg); width: 120px; text-align: center;">Cantidad de agua en el tanque (Litros)</div>
+            
+            <!-- Valores de ejes -->
+            <div style="position: absolute; bottom: 30px; left: 50px;">1 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 100px;">2 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 150px;">3 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 200px;">4 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 250px;">5 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 300px;">6 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 350px;">7 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 400px;">8 p.m.</div>
+            <div style="position: absolute; bottom: 30px; left: 450px;">9 p.m.</div>
+            
+            <div style="position: absolute; bottom: 50px; left: 30px;">0</div>
+            <div style="position: absolute; bottom: 70px; left: 30px;">10</div>
+            <div style="position: absolute; bottom: 90px; left: 30px;">20</div>
+            <div style="position: absolute; bottom: 110px; left: 30px;">30</div>
+            <div style="position: absolute; bottom: 130px; left: 30px;">40</div>
+            <div style="position: absolute; bottom: 150px; left: 30px;">50</div>
+            <div style="position: absolute; bottom: 170px; left: 30px;">60</div>
+            <div style="position: absolute; bottom: 190px; left: 30px;">70</div>
+            <div style="position: absolute; bottom: 210px; left: 30px;">80</div>
+        </div>
+        
+        <p>Teniendo en cuenta la tendencia de la gráfica, ¿cuál de los siguientes valores es una mejor aproximación de la cantidad de agua que había en el tanque a las 4 p. m.?</p>
+        
+        <div class="options">
+            <div class="option">A. 70 litros.</div>
+            <div class="option">B. 55 litros.</div>
+            <div class="option">C. 45 litros.</div>
+           <div class="option">D. 20 litros.</div>
+
+
+           <div class="question" id="question8">
+            <h3>8.</h3>
+            <p>Observa en la tabla la información correspondiente a la cantidad de libros que hay en la biblioteca de un colegio.</p>
+            
+            <div class="figure">
+                <table class="table">
+                    <tr>
+                        <th>Materia</th>
+                        <th>Cantidad de libros de cada materia</th>
+                    </tr>
+                    <tr>
+                        <td>Sociales</td>
+                        <td>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dibujo</td>
+                        <td>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ciencias</td>
+                        <td>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Matemáticas</td>
+                        <td>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                            <span class="book-icon"></span>
+                        </td>
+                    </tr>
+                </table>
+                <p style="text-align: center;">Cada <span class="book-icon"></span> representa 100 libros.</p>
+            </div>
+            
+            <p>Si se elige un libro al azar de la biblioteca, ¿de qué materia es más probable que sea?</p>
+            
+            <div class="options">
+                <div class="option">A. Matemáticas.</div>
+                <div class="option">B. Sociales.</div>
+                <div class="option">C. Dibujo.</div>
+                <div class="option">D. Ciencias.</div>
+            </div>
+        </div>
+
+
+        <div class="question" id="question9">
+            <h3>9.</h3>
+            <p>La ganancia obtenida después de t años de haber realizado una inversión inicial de $1.000.000 está dada por la expresión:</p>
+            <p style="text-align: center;">1.000.000 × 2<sup>t</sup></p>
+            <p>¿Qué representa el número 2 en la expresión anterior?</p>
+            
+            <div class="options">
+                <div class="option">A. Las ganancias obtenidas en el segundo año.</div>
+                <div class="option">B. Las ganancias obtenidas en el último año.</div>
+                <div class="option">C. Que en cada nuevo año las ganancias se reducen a la mitad.</div>
+                <div class="option">D. Que en cada nuevo año las ganancias se duplican con respecto al año anterior.</div>
+            </div>
+        </div>
+
+
+        <div class="question" id="question10">
+            <h3>10.</h3>
+            <p>María, Pedro, Lorena y Rodrigo se postulan para protagonizar una obra de teatro. Como los 4 son muy buenos actores, el profesor decide elegir quién protagonizará la obra escribiendo sus nombres en un papel y seleccionando 1 de los 4 al azar. ¿Cuál es la probabilidad de que Lorena sea elegida?</p>
+            
+            <div class="options">
+                <div class="option">A. <sup>1</sup>/<sub>2</sub></div>
+                <div class="option">B. <sup>1</sup>/<sub>3</sub></div>
+                <div class="option">C. <sup>1</sup>/<sub>4</sub></div>
+                <div class="option">D. <sup>1</sup>/<sub>5</sub></div>
+            </div>
+        </div>
+
+
+
+        <div class="question" id="question11">
+            <h3>11.</h3>
+            <p>En una jardinería venden huertos con las medidas que se muestran en la Figura 1.</p>
+            <p>Para venderlos le colocan una etiqueta con algunas características, pero se le borraron algunos datos (ver Figura 2).</p>
+            
+            <div class="figure" style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+                <div style="margin: 10px;">
+                    <h4>Figura 1</h4>
+                    <svg width="250" height="200">
+                        <!-- Dibujo del huerto en 3D -->
+                        <polygon points="50,150 200,150 200,50 50,50" style="fill:none;stroke:black;stroke-width:2" />
+                        <polygon points="200,50 250,100 250,200 200,150" style="fill:none;stroke:black;stroke-width:2" />
+                        <polygon points="50,50 100,100 250,100 200,50" style="fill:none;stroke:black;stroke-width:2" />
+                        
+                        <!-- Dimensiones -->
+                        <text x="115" y="170" font-size="12">20 cm</text>
+                        <text x="210" y="120" font-size="12">10 cm</text>
+                        <text x="130" y="70" font-size="12">5 cm</text>
+                        
+                        <!-- Etiquetas -->
+                        <text x="90" y="130" font-size="12">Tapa frontal</text>
+                        <text x="220" y="180" font-size="12">Tapa lateral</text>
+                        <text x="125" y="110" font-size="12">Tapa posterior</text>
+                    </svg>
+                </div>
+                
+                <div style="margin: 10px;">
+                    <h4>Figura 2</h4>
+                    <div style="border: 1px solid #000; padding: 10px; width: 200px;">
+                        <p><strong>Área de la base:</strong> 200 cm<sup>2</sup></p>
+                        <p><strong>________:</strong> ?</p>
+                        <p><strong>Área de la tapa frontal:</strong> 100 cm<sup>2</sup></p>
+                        <p><strong>________:</strong> 60 cm<sup>2</sup></p>
+                        <p><strong>________:</strong> 1.000 cm<sup>3</sup></p>
+                    </div>
+                </div>
+            </div>
+            
+            <p>¿Cuál de las opciones muestra correctamente la información completa de la etiqueta?</p>
+            
+            <div class="options">
+                <div class="option">
+                    <strong>A.</strong>
+                    <ul>
+                        <li>Área de la base: 200 cm<sup>2</sup></li>
+                        <li>Área de la tapa posterior: 100 cm<sup>2</sup></li>
+                        <li>Área de la tapa frontal: 60 cm<sup>2</sup></li>
+                        <li>Área de la tapa lateral: 1.000 cm<sup>3</sup></li>
+                    </ul>
+                </div>
+                
+                <div class="option">
+                    <strong>B.</strong>
+                    <ul>
+                        <li>Área de la base: 200 cm<sup>2</sup></li>
+                        <li>Volumen del huerto: 100 cm<sup>2</sup></li>
+                        <li>Área de la tapa frontal: 60 cm<sup>2</sup></li>
+                        <li>Perímetro de la base: 1.000 cm<sup>3</sup></li>
+                    </ul>
+                </div>
+                
+                <div class="option">
+                    <strong>C.</strong>
+                    <ul>
+                        <li>Área de la base: 200 cm<sup>2</sup></li>
+                        <li>Peso del huerto: 100 cm<sup>2</sup></li>
+                        <li>Área de la tapa frontal: 60 cm<sup>2</sup></li>
+                        <li>Perímetro de la base: 1.000 cm<sup>3</sup></li>
+                    </ul>
+                </div>
+                
+                <div class="option">
+                    <strong>D.</strong>
+                    <ul>
+                        <li>Área de la base: 200 cm<sup>2</sup></li>
+                        <li>Precio del huerto: 100 cm<sup>2</sup></li>
+                        <li>Área de la tapa frontal: 60 cm<sup>2</sup></li>
+                        <li>Peso del huerto: 1.000 cm<sup>3</sup></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="question" id="question12">
+            <h3>12.</h3>
+            <p>La cantidad de vueltas que da una llanta para recorrer un metro es igual a 100 dividido entre el perímetro de la llanta, donde el perímetro de la llanta se expresa en centímetros.</p>
+            <p>¿Cuál de las siguientes expresiones permite determinar la cantidad de vueltas que debe dar una llanta de perímetro p (en cm), para recorrer 150 metros?</p>
+            
+            <div class="options">
+                <div class="option">A. <sup>100</sup>/<sub>p</sub> × 150</div>
+                <div class="option">B. 150 × <sup>100</sup>/<sub>p</sub></div>
+                <div class="option">C. <sup>100</sup>/<sub>p</sub> × 150</div>
+                <div class="option">D. <sup>100</sup>/<sub>150</sub> × p</div>
+            </div>
+        </div>
+    
+        <div class="question" id="question13">
+            <h3>13.</h3>
+            <p>Camilo, Juan, Santiago y Mateo compraron boletas para subir a una atracción de un parque de diversiones, de modo que el número de la boleta aumenta siempre en 50 con respecto a la anterior. En la imagen se muestra el orden en que compraron las boletas y el número que le correspondió a Camilo.</p>
+            
+            <div class="figure">
+                <svg width="400" height="150">
+                    <!-- Boletas -->
+                    <rect x="50" y="40" width="60" height="30" stroke="black" fill="none" stroke-width="1"/>
+                    <rect x="130" y="40" width="60" height="30" stroke="black" fill="none" stroke-width="1"/>
+                    <rect x="210" y="40" width="60" height="30" stroke="black" fill="none" stroke-width="1"/>
+                    <rect x="290" y="40" width="60" height="30" stroke="black" fill="none" stroke-width="1"/>
+                    
+                    <!-- Texto en boletas -->
+                    <text x="55" y="60" font-size="10">1.ᵉʳᵃ Boleta</text>
+                    <text x="135" y="60" font-size="10">2.ᵃ Boleta</text>
+                    <text x="215" y="60" font-size="10">3.ᵃ Boleta</text>
+                    <text x="295" y="60" font-size="10">4.ᵃ Boleta</text>
+                    
+                    <!-- Números y nombres -->
+                    <text x="60" y="90" font-size="12">1.450</text>
+                    <text x="140" y="90" font-size="12">?</text>
+                    <text x="220" y="90" font-size="12">?</text>
+                    <text x="300" y="90" font-size="12">?</text>
+                    
+                    <text x="60" y="110" font-size="12">Camilo</text>
+                    <text x="140" y="110" font-size="12">Juan</text>
+                    <text x="220" y="110" font-size="12">Santiago</text>
+                    <text x="300" y="110" font-size="12">Mateo</text>
+                </svg>
+            </div>
+            
+            <p>Si el último en comprar la boleta fue Mateo, ¿qué número de boleta le corresponde?</p>
+            
+            <div class="options">
+                <div class="option">A. 1.750</div>
+                <div class="option">B. 1.600</div>
+                <div class="option">C. 1.550</div>
+                <div class="option">D. 1.500</div>
+            </div>
+        </div>
+    
+        <div class="question" id="question14">
+            <h3>14.</h3>
+            <p>La profesora de Matemáticas entregó a sus estudiantes una misma cantidad de dulces por cada problema resuelto correctamente en clase. Observa.</p>
+            
+            <div class="figure">
+                <svg width="300" height="100">
+                    <ellipse cx="80" cy="50" rx="70" ry="40" stroke="black" fill="none" stroke-width="1"/>
+                    <text x="30" y="50" font-size="12">Resolví 3</text>
+                    <text x="30" y="65" font-size="12">problemas</text>
+                    <text x="30" y="80" font-size="12">correctamente y</text>
+                    <text x="30" y="95" font-size="12">recibí 6 dulces</text>
+                </svg>
+            </div>
+            
+            <p>Teniendo en cuenta la anterior información, ¿cuántos dulces recibe un estudiante si resuelve 5 problemas correctamente?</p>
+            
+            <div class="options">
+                <div class="option">A. 15</div>
+                <div class="option">B. 10</div>
+                <div class="option">C. 6</div>
+                <div class="option">D. 2</div>
+            </div>
+        </div>
+    
+        <div class="question" id="question15">
+            <h3>15.</h3>
+            <p>La imagen muestra una de las vistas de la maqueta de una pirámide de la cultura maya.</p>
+            
+            <div class="figure">
+                <svg width="300" height="200">
+                    <!-- Pirámide con ángulos -->
+                    <polygon points="150,20 50,180 250,180" fill="none" stroke="black" stroke-width="2"/>
+                    <line x1="150" y1="20" x2="150" y2="180" stroke="black" stroke-width="1" stroke-dasharray="5,5"/>
+                    
+                    <!-- Puntos -->
+                    <circle cx="150" cy="20" r="4" fill="black"/>
+                    <circle cx="50" cy="180" r="4" fill="black"/>
+                    <circle cx="150" cy="180" r="4" fill="black"/>
+                    <circle cx="250" cy="180" r="4" fill="black"/>
+                    <circle cx="100" cy="100" r="4" fill="black"/>
+                    <circle cx="200" cy="100" r="4" fill="black"/>
+                    
+                    <!-- Letras -->
+                    <text x="155" y="20" font-size="14">N</text>
+                    <text x="40" y="180" font-size="14">O</text>
+                    <text x="150" y="195" font-size="14">P</text>
+                    <text x="255" y="180" font-size="14">R</text>
+                    <text x="85" y="100" font-size="14">M</text>
+                    <text x="205" y="100" font-size="14">Q</text>
+                    
+                    <!-- Ángulos -->
+                    <path d="M 70,160 A 30,30 0 0,1 100,150" fill="none" stroke="black" stroke-width="1"/>
+                    <text x="80" y="165" font-size="10">60°</text>
+                    
+                    <path d="M 230,160 A 30,30 0 0,0 200,150" fill="none" stroke="black" stroke-width="1"/>
+                    <text x="210" y="165" font-size="10">60°</text>
+                    
+                    <path d="M 130,160 A 20,20 0 0,1 150,150" fill="none" stroke="black" stroke-width="1"/>
+                    <text x="130" y="165" font-size="10">90°</text>
+                    
+                    <path d="M 170,160 A 20,20 0 0,0 150,150" fill="none" stroke="black" stroke-width="1"/>
+                    <text x="160" y="165" font-size="10">90°</text>
+                </svg>
+            </div>
+            
+            <p>¿Cuál de las siguientes opciones corresponde a dos lados paralelos en la maqueta?</p>
+            
+            <div class="options">
+                <div class="option">A. MN y OP</div>
+                <div class="option">B. MP y NR</div>
+                <div class="option">C. OP y PM</div>
+                <div class="option">D. NR y OQ</div>
+            </div>
+        </div>
+    
+        <div class="question" id="question16">
+            <h3>16.</h3>
+            <p>Mercedes está leyendo un libro de matemáticas y se dio cuenta que hay un enunciado para completar. La imagen muestra la página del libro.</p>
+            
+            <div class="figure">
+                <div style="border: 1px solid #000; padding: 15px; width: 300px; margin: 0 auto; background-color: #f9f9f9;">
+                    <div style="float: right; width: 100px; height: 100px;">
+                        <svg width="100" height="100">
+                            <!-- Cubo -->
+                            <polygon points="20,30 70,30 70,80 20,80" style="fill:none;stroke:black;stroke-width:2" />
+                            <polygon points="70,30 90,10 90,60 70,80" style="fill:none;stroke:black;stroke-width:2" />
+                            <polygon points="20,30 40,10 90,10 70,30" style="fill:none;stroke:black;stroke-width:2" />
+                            
+                            <!-- Dimensiones -->
+                            <text x="38" y="95" font-size="10">4 cm</text>
+                            <text x="75" y="50" font-size="10">6 cm</text>
+                            <text x="50" y="20" font-size="10">4 cm</text>
+                        </svg>
+                    </div>
+                    <p>Al realizar la multiplicación</p>
+                    <p>4 cm × 4 cm × 6 cm</p>
+                    <p>se obtiene que el volumen del bloque de madera es ___</p>
+                </div>
+            </div>
+            
+            <p>¿Qué debe escribir Mercedes para completar correctamente el enunciado?</p>
+            
+            <div class="options">
+                <div class="option">A. 96 cm</div>
+                <div class="option">B. 96 cm<sup>2</sup></div>
+                <div class="option">C. 96 cm<sup>3</sup></div>
+                <div class="option">D. 96 cm<sup>4</sup></div>
+            </div>
+        </div>
+    
+        <div class="question" id="question17">
+            <h3>17.</h3>
+            <p>Eduardo puso en una bolsa las fichas de un antiguo juego chino, en el que se usan fichas blancas y fichas negras de igual tamaño. Cada ficha tiene dibujada una figura geométrica y está clasificada en una categoría, par o impar. En la tabla se indica la cantidad de fichas de cada tipo que puso en la bolsa.</p>
+            
+            <div class="figure">
+                <table class="table">
+                    <tr>
+                        <th rowspan="2">Color</th>
+                        <th rowspan="2">Categoría</th>
+                        <th colspan="2">Figura geométrica</th>
+                    </tr>
+                    <tr>
+                        <th>Círculo</th>
+                        <th>Cuadrado</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Blanca</td>
+                        <td>Par</td>
+                        <td>12</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>Impar</td>
+                        <td>16</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Negra</td>
+                        <td>Par</td>
+                        <td>11</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td>Impar</td>
+                        <td>20</td>
+                        <td>8</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <p>Si se eligen al azar dos fichas de la bolsa, ¿cuáles de las siguientes fichas tienen la misma probabilidad de ser elegidas?</p>
+            
+            <div class="options">
+                <div class="option">A. Una ficha blanca con un círculo y una ficha negra con un cuadrado.</div>
+                <div class="option">B. Una ficha blanca con un cuadrado y una ficha negra con un círculo.</div>
+                <div class="option">C. Una ficha blanca de categoría par con un cuadrado y una ficha negra de categoría impar con un círculo.</div>
+                <div class="option">D. Una ficha blanca de categoría impar con un círculo y una ficha negra de categoría par con un cuadrado.</div>
+            </div>
+        </div>
+    
+        <div class="question" id="question18">
+            <h3>18.</h3>
+            <p>La figura muestra un hexágono regular dividido en 6 triángulos equiláteros.</p>
+            
+            <div class="figure">
+                <div class="hexagon">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        <!-- Hexágono -->
+                        <polygon points="100,10 170,50 170,150 100,190 30,150 30,50" fill="none" stroke="black" stroke-width="2"/>
+                        
+                        <!-- Líneas internas -->
+                        <line x1="100" y1="10" x2="100" y2="190" stroke="black" stroke-width="1"/>
+                        <line x1="100" y1="10" x2="30" y2="50" stroke="black" stroke-width="1"/>
+                        <line x1="100" y1="10" x2="170" y2="50" stroke="black" stroke-width="1"/>
+                        <line x1="170" y1="150" x2="30" y2="150" stroke="black" stroke-width="1"/>
+                        <line x1="100" y1="190" x2="30" y2="50" stroke="black" stroke-width="1"/>
+                        <line x1="100" y1="190" x2="170" y2="50" stroke="black" stroke-width="1"/>
+                        
+                        <!-- Etiquetas de medidas -->
+                        <text x="130" y="40" font-size="12">4 cm</text>
+                        <text x="175" y="100" font-size="12">4 cm</text>
+                        <text x="130" y="170" font-size="12">4 cm</text>
+                        <text x="70" y="170" font-size="12">4 cm</text>
+                        <text x="15" y="100" font-size="12">4 cm</text>
+                        <text x="70" y="40" font-size="12">4 cm</text>
+                        
+                        <!-- Altura -->
+                        <text x="105" y="100" font-size="12">2√3 cm</text>
+                    </svg>
+                </div>
+            </div>
+            
+            <p>Para calcular el área del hexágono regular se multiplica el área de uno de los triángulos equiláteros por 6.</p>
+            <p>¿Cuál es el área del hexágono regular?</p>
+            
+            <div class="options">
+                <div class="option">A. 5√3 cm<sup>2</sup></div>
+                <div class="option">B. 10√3 cm<sup>2</sup></div>
+                <div class="option">C. 24√3 cm<sup>2</sup></div>
+                <div class="option">D. 48√3 cm<sup>2</sup></div>
+            </div>
+        </div>
+    
+        <div class="question" id="question19">
+            <h3>19.</h3>
+            <p>Se realizó una encuesta a un grupo de 1.000 personas sobre el tipo de bienes que poseen. Los resultados se presentan en la gráfica.</p>
+            
+            <div class="figure">
+                <svg width="400" height="250">
+                    <!-- Gráfico circular -->
+                    <circle cx="200" cy="120" r="100" fill="none" stroke="black" stroke-width="2"/>
+                    
+                    <!-- Segmentos -->
+                    <path d="M 200 120 L 200 20 A 100 100 0 0 1 281 74 Z" fill="#ffcccb" stroke="black"/>
+                    <path d="M 200 120 L 281 74 A 100 100 0 0 1 281 166 Z" fill="#c6e2ff" stroke="black"/>
+                    <path d="M 200 120 L 281 166 A 100 100 0 0 1 134 204 Z" fill="#d1ffbd" stroke="black"/>
+                    <path d="M 200 120 L 134 204 A 100 100 0 0 1 120 120 Z" fill="#ffd8b1" stroke="black"/>
+                    <path d="M 200 120 L 120 120 A 100 100 0 0 1 200 20 Z" fill="#e0bbff" stroke="black"/>
+                    
+                    <!-- Leyenda -->
+                    <rect x="50" y="230" width="15" height="15" fill="#ffcccb"/>
+                    <text x="70" y="243" font-size="12">Solo carro</text>
+                    <text x="150" y="243" font-size="12">200</text>
+                    
+                    <rect x="50" y="250" width="15" height="15" fill="#c6e2ff"/>
+                    <text x="70" y="263" font-size="12">Solo apartamento</text>
+                    <text x="150" y="263" font-size="12">310</text>
+                    
+                    <rect x="180" y="230" width="15" height="15" fill="#d1ffbd"/>
+                    <text x="200" y="243" font-size="12">Solo casa</text>
+                    <text x="280" y="243" font-size="12">60</text>
+                    
+                    <rect x="180" y="250" width="15" height="15" fill="#ffd8b1"/>
+                    <text x="200" y="263" font-size="12">Carro y casa</text>
+                    <text x="280" y="263" font-size="12">190</text>
+                    
+                    <rect x="320" y="230" width="15" height="15" fill="#e0bbff"/>
+                    <text x="340" y="243" font-size="12">Carro y apartamento</text>
+                    <text x="340" y="263" font-size="12">240</text>
+                </svg>
+            </div>
+            
+            <p>Si se escoge una persona del grupo al azar, ¿cuál es la probabilidad de que tenga solo carro?</p>
+            
+            <div class="options">
+                <div class="option">A. <sup>1</sup>/<sub>5</sub></div>
+                <div class="option">B. <sup>2</sup>/<sub>10</sub></div>
+                <div class="option">C. <sup>63</sup>/<sub>100</sub></div>
+                <div class="option">D. <sup>8</sup>/<sub>10</sub></div>
+            </div>
+        </div>
+    
+        <div class="question" id="question20">
+            <h3>20.</h3>
+            <p>Julián está jugando con un dado numerado. Observa.</p>
+            
+            <div class="figure">
+                <svg width="200" height="100">
+                    <rect x="50
+    
+

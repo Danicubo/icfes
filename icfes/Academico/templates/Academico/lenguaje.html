@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lengua Castellana - Cuadernillo Interactivo Grado 9</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #4caf50;
+            --very-light-green: #e8f5e9;
+            --primary-yellow: #ffc107;
+            --light-yellow: #fff8e1;
+            --dark-green: #1b5e20;
+            --dark-yellow: #ff8f00;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--very-light-green);
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+            color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .intro {
+            background-color: var(--light-yellow);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 0 auto 30px;
+            max-width: 900px;
+            border-left: 6px solid var(--primary-yellow);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 1.3em;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .text-container {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--primary-yellow);
+        }
+        
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        .image-caption {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--primary-yellow);
+            transition: all 0.3s ease;
+        }
+        
+        .question:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .question-title {
+            font-weight: bold;
+            color: var(--dark-green);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .option {
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+        
+        .option:hover {
+            background-color: var(--very-light-green);
+            border-color: var(--light-green);
+        }
+        
+        .option label {
+            cursor: pointer;
+            display: block;
+            padding: 5px;
+        }
+        
+        .timer-container {
+            text-align: center;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: var(--light-yellow);
+            border-radius: 8px;
+            font-size: 1.2em;
+            max-width: 900px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .timer {
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary-green), var(--light-green));
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
+        }
+        
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 8px;
+            background-color: var(--very-light-green);
+            font-size: 1.1em;
+            text-align: center;
+            display: none;
+        }
+        
+        .score {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+        
+        .time-result {
+            font-size: 1.1em;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: var(--light-yellow);
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .incorrect-answers {
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .incorrect-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            border-radius: 4px;
+        }
+        
+        .correct-answer {
+            color: var(--dark-green);
+            font-weight: bold;
+        }
+        
+        .question-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .correct {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .incorrect {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+        }
+        
+        .remaining-questions {
+            font-weight: bold;
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+            
+            .question {
+                padding: 12px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Lengua Castellana - Cuadernillo Interactivo</h1>
+        <h2>Grado 9° - Comprensión Lectora y Análisis Textual</h2>
+    </div>
+
+    
+    <div class="timer-container">
+        Tiempo transcurrido: <span class="timer" id="timer">00:00</span>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <form id="quizForm">
+        <!-- Sección 1: Texto narrativo -->
+        <div class="section">
+            <h3 class="section-title">RESPONDE LAS PREGUNTAS 1 A 5 DE ACUERDO CON EL SIGUIENTE TEXTO</h3>
+            <div class="content">
+                <div class="text-container">
+                    <h4>El árbol generoso</h4>
+                    <p>Había una vez un árbol que amaba a un niño. Todos los días el niño venía y recogía sus hojas, se trepaba por su tronco, se columpiaba en sus ramas y comía sus manzanas. Jugaban al escondite y cuando el niño estaba cansado, dormía a la sombra del árbol. El árbol era feliz.</p>
+                    <p>Pero el niño creció y el árbol a menudo estaba solo. Un día el niño regresó y el árbol tembló de alegría. "Ven, niño", dijo, "trepa por mi tronco y colúmpiate en mis ramas". "Estoy demasiado grande para trepar y jugar", dijo el niño. "Quiero comprar cosas y divertirme. Necesito dinero. ¿Me das algo de dinero?"</p>
+                    <p>"Lo siento", dijo el árbol, "pero no tengo dinero. Solo tengo hojas y manzanas. Llévate mis manzanas y véndelas en la ciudad. Entonces tendrás dinero y serás feliz".</p>
+                    <p>Así lo hizo el muchacho y el árbol fue feliz. Pero el muchacho estuvo ausente por mucho tiempo y el árbol estaba triste.</p>
+                    <p><small>Adaptación del cuento "El árbol generoso" de Shel Silverstein</small></p>
+                </div>
+                
+                <div class="question" id="q1">
+                    <div class="question-title">1. ¿Cuál es el tema principal del texto?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q1" value="incorrecto"> La importancia del dinero en la vida</label></li>
+                        <li class="option"><label><input type="radio" name="q1" value="correcto"> El amor incondicional y el desinterés</label></li>
+                        <li class="option"><label><input type="radio" name="q1" value="incorrecto"> La soledad en la vejez</label></li>
+                        <li class="option"><label><input type="radio" name="q1" value="incorrecto"> La relación entre humanos y naturaleza</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q1"></div>
+                </div>
+                
+                <div class="question" id="q2">
+                    <div class="question-title">2. ¿Qué tipo de narrador tiene el texto?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q2" value="correcto"> Narrador en tercera persona</label></li>
+                        <li class="option"><label><input type="radio" name="q2" value="incorrecto"> Narrador protagonista</label></li>
+                        <li class="option"><label><input type="radio" name="q2" value="incorrecto"> Narrador testigo</label></li>
+                        <li class="option"><label><input type="radio" name="q2" value="incorrecto"> Narrador en segunda persona</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q2"></div>
+                </div>
+                
+                <div class="question" id="q3">
+                    <div class="question-title">3. ¿Qué figura literaria predomina en la personificación del árbol?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q3" value="incorrecto"> Metáfora</label></li>
+                        <li class="option"><label><input type="radio" name="q3" value="correcto"> Prosopopeya</label></li>
+                        <li class="option"><label><input type="radio" name="q3" value="incorrecto"> Hipérbole</label></li>
+                        <li class="option"><label><input type="radio" name="q3" value="incorrecto"> Comparación</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q3"></div>
+                </div>
+                
+                <div class="question" id="q4">
+                    <div class="question-title">4. ¿Qué cambio se evidencia en la relación entre el árbol y el niño a lo largo del texto?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q4" value="incorrecto"> De indiferencia a amor</label></li>
+                        <li class="option"><label><input type="radio" name="q4" value="correcto"> De compañía a utilidad</label></li>
+                        <li class="option"><label><input type="radio" name="q4" value="incorrecto"> De odio a reconciliación</label></li>
+                        <li class="option"><label><input type="radio" name="q4" value="incorrecto"> De dependencia a independencia</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q4"></div>
+                </div>
+                
+                <div class="question" id="q5">
+                    <div class="question-title">5. ¿Qué valor representa principalmente el árbol en el texto?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q5" value="incorrecto"> La sabiduría</label></li>
+                        <li class="option"><label><input type="radio" name="q5" value="incorrecto"> La paciencia</label></li>
+                        <li class="option"><label><input type="radio" name="q5" value="correcto"> La generosidad</label></li>
+                        <li class="option"><label><input type="radio" name="q5" value="incorrecto"> La justicia</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q5"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección 2: Texto expositivo -->
+        <div class="section">
+            <h3 class="section-title">RESPONDE LAS PREGUNTAS 6 A 10 DE ACUERDO CON EL SIGUIENTE TEXTO</h3>
+            <div class="content">
+                <div class="text-container">
+                    <h4>El origen de la escritura</h4>
+                    <p>La escritura es uno de los inventos más importantes de la humanidad. Surgió alrededor del año 3.300 a.C. en Mesopotamia, cuando los sumerios desarrollaron un sistema de registro basado en pictogramas tallados en tablillas de arcilla. Este sistema, conocido como cuneiforme, evolucionó de representaciones pictóricas a signos más abstractos.</p>
+                    <p>Paralelamente, en Egipto se desarrolló la escritura jeroglífica, combinando elementos fonéticos e ideográficos. Los jeroglíficos eran tallados en piedra o escritos en papiro y tenían un carácter sagrado. Mientras tanto, en China, la escritura apareció hacia el 1.200 a.C. con el sistema de caracteres que aún se usa hoy.</p>
+                    <p>El alfabeto, tal como lo conocemos, fue creado por los fenicios alrededor del 1.000 a.C. Este sistema revolucionario asignaba un símbolo a cada sonido consonántico, simplificando enormemente el aprendizaje de la escritura. Los griegos adaptaron este alfabeto añadiendo las vocales, creando así la base de la mayoría de los alfabetos modernos.</p>
+                    <p><small>Fuente: Historia de los sistemas de escritura, J. Martínez, 2018</small></p>
+                </div>
+                
+                <div class="question" id="q6">
+                    <div class="question-title">6. ¿Cuál es la idea principal del texto?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q6" value="incorrecto"> La superioridad del alfabeto fenicio</label></li>
+                        <li class="option"><label><input type="radio" name="q6" value="correcto"> El desarrollo histórico de los sistemas de escritura</label></li>
+                        <li class="option"><label><input type="radio" name="q6" value="incorrecto"> La importancia cultural de los jeroglíficos egipcios</label></li>
+                        <li class="option"><label><input type="radio" name="q6" value="incorrecto"> Las dificultades de aprender a escribir en la antigüedad</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q6"></div>
+                </div>
+                
+                <div class="question" id="q7">
+                    <div class="question-title">7. Según el texto, ¿qué característica hizo revolucionario al alfabeto fenicio?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q7" value="incorrecto"> Su uso de pictogramas</label></li>
+                        <li class="option"><label><input type="radio" name="q7" value="incorrecto"> Su escritura en tablillas de arcilla</label></li>
+                        <li class="option"><label><input type="radio" name="q7" value="correcto"> La asignación de un símbolo a cada sonido consonántico</label></li>
+                        <li class="option"><label><input type="radio" name="q7" value="incorrecto"> Su carácter sagrado</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q7"></div>
+                </div>
+                
+                <div class="question" id="q8">
+                    <div class="question-title">8. ¿Qué tipo de texto es el anterior?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q8" value="correcto"> Expositivo</label></li>
+                        <li class="option"><label><input type="radio" name="q8" value="incorrecto"> Narrativo</label></li>
+                        <li class="option"><label><input type="radio" name="q8" value="incorrecto"> Argumentativo</label></li>
+                        <li class="option"><label><input type="radio" name="q8" value="incorrecto"> Descriptivo</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q8"></div>
+                </div>
+                
+                <div class="question" id="q9">
+                    <div class="question-title">9. ¿Qué aportación hicieron los griegos al alfabeto fenicio?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q9" value="incorrecto"> Los pictogramas</label></li>
+                        <li class="option"><label><input type="radio" name="q9" value="incorrecto"> Los caracteres ideográficos</label></li>
+                        <li class="option"><label><input type="radio" name="q9" value="correcto"> Las vocales</label></li>
+                        <li class="option"><label><input type="radio" name="q9" value="incorrecto"> Los jeroglíficos</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q9"></div>
+                </div>
+                
+                <div class="question" id="q10">
+                    <div class="question-title">10. ¿Qué palabra del texto significa 'representación mediante imágenes'?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q10" value="incorrecto"> Cuneiforme</label></li>
+                        <li class="option"><label><input type="radio" name="q10" value="correcto"> Pictogramas</label></li>
+                        <li class="option"><label><input type="radio" name="q10" value="incorrecto"> Ideográficos</label></li>
+                        <li class="option"><label><input type="radio" name="q10" value="incorrecto"> Fonéticos</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q10"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 3: Texto argumentativo -->
+        <div class="section">
+            <h3 class="section-title">RESPONDE LAS PREGUNTAS 11 A 15 DE ACUERDO CON EL SIGUIENTE TEXTO</h3>
+            <div class="content">
+                <div class="text-container">
+                    <h4>¿Deben los jóvenes leer libros impresos en la era digital?</h4>
+                    <p>En la era de smartphones y tablets, muchos cuestionan la necesidad de que los jóvenes lean libros impresos. Sin embargo, investigaciones recientes demuestran que la lectura en papel ofrece beneficios cognitivos que los formatos digitales no igualan.</p>
+                    <p>Un estudio de la Universidad de Stavanger (Noruega) encontró que los lectores de libros impresos comprenden y recuerdan mejor el contenido que los lectores digitales. Los científicos sugieren que la materialidad del libro -su peso, el pasar páginas- crea marcadores mentales que facilitan la memoria.</p>
+                    <p>Además, la lectura en papel reduce distracciones. Mientras un libro solo ofrece texto, los dispositivos digitales presentan notificaciones, enlaces y múltiples funciones que fragmentan la atención. La psicóloga Maryanne Wolf advierte que la lectura superficial en pantallas puede afectar el desarrollo de la capacidad de concentración profunda.</p>
+                    <p>Por otro lado, los defensores de lo digital argumentan su mayor accesibilidad y capacidad de almacenamiento. Sin duda, los formatos digitales son prácticos, pero no deberían reemplazar completamente al libro impreso, especialmente en la formación de jóvenes lectores.</p>
+                    <p><small>Artículo de opinión, Revista Educación Hoy, 2023</small></p>
+                </div>
+                
+                <div class="question" id="q11">
+                    <div class="question-title">11. ¿Cuál es la tesis principal del texto?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q11" value="incorrecto"> Los formatos digitales son superiores a los impresos</label></li>
+                        <li class="option"><label><input type="radio" name="q11" value="correcto"> Los libros impresos ofrecen beneficios cognitivos importantes</label></li>
+                        <li class="option"><label><input type="radio" name="q11" value="incorrecto"> Los jóvenes ya no leen libros impresos</label></li>
+                        <li class="option"><label><input type="radio" name="q11" value="incorrecto"> La lectura digital es más accesible</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q11"></div>
+                </div>
+                
+                <div class="question" id="q12">
+                    <div class="question-title">12. ¿Qué tipo de argumento utiliza principalmente el autor?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q12" value="incorrecto"> De autoridad</label></li>
+                        <li class="option"><label><input type="radio" name="q12" value="correcto"> Científico</label></li>
+                        <li class="option"><label><input type="radio" name="q12" value="incorrecto"> Emotivo</label></li>
+                        <li class="option"><label><input type="radio" name="q12" value="incorrecto"> Estadístico</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q12"></div>
+                </div>
+                
+                <div class="question" id="q13">
+                    <div class="question-title">13. ¿Qué contraargumento menciona el texto sobre la lectura digital?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q13" value="incorrecto"> Es más económica</label></li>
+                        <li class="option"><label><input type="radio" name="q13" value="correcto"> Mayor accesibilidad y capacidad de almacenamiento</label></li>
+                        <li class="option"><label><input type="radio" name="q13" value="incorrecto"> Facilita la concentración</label></li>
+                        <li class="option"><label><input type="radio" name="q13" value="incorrecto"> Mejora la comprensión lectora</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q13"></div>
+                </div>
+                
+                <div class="question" id="q14">
+                    <div class="question-title">14. Según el texto, ¿por qué la lectura en papel facilita la memoria?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q14" value="incorrecto"> Porque los libros son más caros</label></li>
+                        <li class="option"><label><input type="radio" name="q14" value="correcto"> Porque la materialidad del libro crea marcadores mentales</label></li>
+                        <li class="option"><label><input type="radio" name="q14" value="incorrecto"> Porque no tienen notificaciones</label></li>
+                        <li class="option"><label><input type="radio" name="q14" value="incorrecto"> Porque son más fáciles de transportar</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q14"></div>
+                </div>
+                
+                <div class="question" id="q15">
+                    <div class="question-title">15. ¿Qué advertencia hace la psicóloga Maryanne Wolf?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q15" value="incorrecto"> Que los libros impresos desaparecerán</label></li>
+                        <li class="option"><label><input type="radio" name="q15" value="correcto"> Que la lectura superficial en pantallas afecta la concentración</label></li>
+                        <li class="option"><label><input type="radio" name="q15" value="incorrecto"> Que los jóvenes no leen suficiente</label></li>
+                        <li class="option"><label><input type="radio" name="q15" value="incorrecto"> Que la lectura digital es más rápida</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q15"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección 4: Texto poético -->
+        <div class="section">
+            <h3 class="section-title">RESPONDE LAS PREGUNTAS 16 A 20 DE ACUERDO CON EL SIGUIENTE TEXTO</h3>
+            <div class="content">
+                <div class="text-container" style="text-align: center; font-style: italic;">
+                    <h4>Soneto XXIII</h4>
+                    <p>En tanto que de rosa y azucena</p>
+                    <p>se muestra la color en vuestro gesto,</p>
+                    <p>y que vuestro mirar ardiente, honesto,</p>
+                    <p>enciende al corazón y lo refrena;</p>
+                    <br>
+                    <p>y en tanto que el cabello, que en la vena</p>
+                    <p>del oro se escogió, con vuelo presto,</p>
+                    <p>por el hermoso cuello blanco, enhiesto,</p>
+                    <p>el viento mueve, esparce y desordena;</p>
+                    <br>
+                    <p>coged de vuestra alegre primavera</p>
+                    <p>el dulce fruto, antes que el tiempo airado</p>
+                    <p>cubra de nieve la hermosa cumbre.</p>
+                    <br>
+                    <p>Marchitará la rosa el viento helado,</p>
+                    <p>todo lo mudará la edad ligera,</p>
+                    <p>por no hacer mudanza en su costumbre.</p>
+                    <p><small>Garcilaso de la Vega, siglo XVI</small></p>
+                </div>
+                
+                <div class="question" id="q16">
+                    <div class="question-title">16. ¿Qué tema principal trata el poema?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q16" value="incorrecto"> La belleza de la naturaleza</label></li>
+                        <li class="option"><label><input type="radio" name="q16" value="correcto"> El carpe diem (aprovecha el día)</label></li>
+                        <li class="option"><label><input type="radio" name="q16" value="incorrecto"> El poder del amor</label></li>
+                        <li class="option"><label><input type="radio" name="q16" value="incorrecto"> La llegada del invierno</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q16"></div>
+                </div>
+                
+                <div class="question" id="q17">
+                    <div class="question-title">17. ¿Qué figura literaria predomina en "el cabello, que en la vena del oro se escogió"?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q17" value="incorrecto"> Hipérbole</label></li>
+                        <li class="option"><label><input type="radio" name="q17" value="correcto"> Metáfora</label></li>
+                        <li class="option"><label><input type="radio" name="q17" value="incorrecto"> Personificación</label></li>
+                        <li class="option"><label><input type="radio" name="q17" value="incorrecto"> Comparación</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q17"></div>
+                </div>
+                
+                <div class="question" id="q18">
+                    <div class="question-title">18. ¿Qué simboliza "la nieve" en el poema?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q18" value="incorrecto"> La pureza</label></li>
+                        <li class="option"><label><input type="radio" name="q18" value="correcto"> La vejez</label></li>
+                        <li class="option"><label><input type="radio" name="q18" value="incorrecto"> El invierno</label></li>
+                        <li class="option"><label><input type="radio" name="q18" value="incorrecto"> La frialdad</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q18"></div>
+                </div>
+                
+                <div class="question" id="q19">
+                    <div class="question-title">19. ¿Qué estructura tiene el poema?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q19" value="correcto"> Dos cuartetos y dos tercetos</label></li>
+                        <li class="option"><label><input type="radio" name="q19" value="incorrecto"> Tres cuartetos</label></li>
+                        <li class="option"><label><input type="radio" name="q19" value="incorrecto"> Cuatro tercetos</label></li>
+                        <li class="option"><label><input type="radio" name="q19" value="incorrecto"> Una estrofa de catorce versos</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q19"></div>
+                </div>
+                
+                <div class="question" id="q20">
+                    <div class="question-title">20. ¿Qué mensaje transmite el verso "coged de vuestra alegre primavera el dulce fruto"?</div>
+                    <ul class="options">
+                        <li class="option"><label><input type="radio" name="q20" value="incorrecto"> Que se debe sembrar en primavera</label></li>
+                        <li class="option"><label><input type="radio" name="q20" value="correcto"> Que hay que aprovechar la juventud</label></li>
+                        <li class="option"><label><input type="radio" name="q20" value="incorrecto"> Que la primavera es la mejor estación</label></li>
+                        <li class="option"><label><input type="radio" name="q20" value="incorrecto"> Que los frutos son más dulces en primavera</label></li>
+                    </ul>
+                    <div class="question-result" id="result-q20"></div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" onclick="calificar()">Finalizar y Calificar</button>
+        
+        <div id="resultado" class="result">
+            <div class="score" id="scoreText"></div>
+            <div class="remaining-questions" id="remainingQuestions"></div>
+            <div class="time-result" id="timeResult"></div>
+            <div id="incorrectAnswers" class="incorrect-answers"></div>
+        </div>
+    </form>
+
+    <script>
+        // Temporizador
+        let seconds = 0;
+        const timer = setInterval(function() {
+            seconds++;
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }, 1000);
+
+        // Barra de progreso
+        function updateProgressBar() {
+            const form = document.getElementById('quizForm');
+            const totalQuestions = 20;
+            const answered = form.querySelectorAll('input[type="radio"]:checked').length;
+            const progress = (answered / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        // Actualizar barra de progreso cuando se selecciona una respuesta
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', updateProgressBar);
+        });
+
+        // Función para formatear el tiempo
+        function formatTime(totalSeconds) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes} minuto${minutes !== 1 ? 's' : ''} y ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+        }
+
+        // Función de calificación
+        function calificar() {
+            clearInterval(timer); // Detener el temporizador
+            
+            // Mostrar tiempo final
+            const tiempoFormateado = formatTime(seconds);
+            document.getElementById('timeResult').textContent = `Tiempo total: ${tiempoFormateado}`;
+            
+            const form = document.getElementById('quizForm');
+            const respuestas = form.querySelectorAll('input[type="radio"]:checked');
+            let puntaje = 0;
+            const totalPreguntas = 20;
+            const respuestasIncorrectas = [];
+            let preguntasSinResponder = totalPreguntas - respuestas.length;
+            
+            // Calificar cada respuesta
+            respuestas.forEach(respuesta => {
+                const questionNumber = respuesta.name.substring(1);
+                const resultDiv = document.getElementById(`result-q${questionNumber}`);
+                
+                if (respuesta.value === "correcto") {
+                    puntaje++;
+                    resultDiv.textContent = "✓ Correcta";
+                    resultDiv.className = "question-result correct";
+                } else {
+                    respuestasIncorrectas.push(parseInt(questionNumber));
+                    resultDiv.textContent = "✗ Incorrecta";
+                    resultDiv.className = "question-result incorrect";
+                }
+                resultDiv.style.display = "block";
+            });
+            
+            // Mostrar preguntas sin responder
+            for (let i = 1; i <= totalPreguntas; i++) {
+                if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+                    const resultDiv = document.getElementById(`result-q${i}`);
+                    resultDiv.textContent = "No respondida";
+                    resultDiv.className = "question-result";
+                    resultDiv.style.display = "block";
+                    respuestasIncorrectas.push(i);
+                }
+            }
+            
+            // Mostrar resultados
+            const porcentaje = Math.round((puntaje / totalPreguntas) * 100);
+            document.getElementById('scoreText').textContent = `Puntuación: ${puntaje}/${totalPreguntas} (${porcentaje}%)`;
+            
+            // Mostrar preguntas sin responder
+            if (preguntasSinResponder > 0) {
+                document.getElementById('remainingQuestions').textContent = `Preguntas sin responder: ${preguntasSinResponder}`;
+            } else {
+                document.getElementById('remainingQuestions').textContent = "¡Has respondido todas las preguntas!";
+            }
+            
+            // Mostrar respuestas incorrectas
+            if (respuestasIncorrectas.length > 0) {
+                let incorrectHTML = "<h3>Respuestas correctas:</h3>";
+                
+                // Definir las respuestas correctas para cada pregunta
+                const correctAnswers = {
+                    1: "El amor incondicional y el desinterés",
+                    2: "Narrador en tercera persona",
+                    3: "Prosopopeya",
+                    4: "De compañía a utilidad",
+                    5: "La generosidad",
+                    6: "El desarrollo histórico de los sistemas de escritura",
+                    7: "La asignación de un símbolo a cada sonido consonántico",
+                    8: "Expositivo",
+                    9: "Las vocales",
+                    10: "Pictogramas",
+                    11: "Los libros impresos ofrecen beneficios cognitivos importantes",
+                    12: "Científico",
+                    13: "Mayor accesibilidad y capacidad de almacenamiento",
+                    14: "Porque la materialidad del libro crea marcadores mentales",
+                    15: "Que la lectura superficial en pantallas afecta la concentración",
+                    16: "El carpe diem (aprovecha el día)",
+                    17: "Metáfora",
+                    18: "La vejez",
+                    19: "Dos cuartetos y dos tercetos",
+                    20: "Que hay que aprovechar la juventud"
+                };
+                
+                respuestasIncorrectas.forEach(num => {
+                    incorrectHTML += `
+                        <div class="incorrect-item">
+                            <strong>Pregunta ${num}:</strong><br>
+                            <span class="correct-answer">Respuesta correcta: ${correctAnswers[num]}</span>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById('incorrectAnswers').innerHTML = incorrectHTML;
+            }
+            
+            // Mostrar sección de resultados
+            document.getElementById('resultado').style.display = "block";
+            
+            // Desplazarse a los resultados
+            document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

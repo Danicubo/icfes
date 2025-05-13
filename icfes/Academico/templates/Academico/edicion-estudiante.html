@@ -1,30 +1,238 @@
 {% extends "./base.html" %}
 {% block content %}
 
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Editar Estudiante</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label class="form-label">Nombre Completo:</label>
-            <input type="text" class="form-control" name="txtNombreCompleto" value="{{ estudiante.nombre_completo }}" required>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Estudiante</title>
+    <style>
+        :root {
+            --primary-green: #2e8b57;
+            --light-green: #8fbc8f;
+            --accent-yellow: #ffd700;
+            --light-yellow: #fff8dc;
+            --text-dark: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-top: 4px solid var(--primary-green);
+        }
+        
+        .card-header {
+            background-color: var(--light-green);
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .card-header:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: linear-gradient(135deg, var(--light-green) 33%, transparent 33%),
+                        linear-gradient(225deg, var(--light-green) 33%, transparent 33%);
+            background-size: 20px 30px;
+        }
+        
+        .card-body {
+            padding: 2rem;
+            background-color: white;
+        }
+        
+        h2 {
+            color: var(--primary-green);
+            text-align: center;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: white;
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent-yellow);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.25);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group i {
+            position: absolute;
+            right: 12px;
+            top: 40px;
+            color: var(--light-green);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1c6e42;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e6c200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .form-icon {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .form-icon img {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-yellow);
+            padding: 1rem;
+            border-radius: 50%;
+        }
+        
+        /* Field decoration */
+        .field-decoration {
+            position: relative;
+        }
+        
+        .field-decoration::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            width: 4px;
+            height: 20px;
+            background-color: var(--accent-yellow);
+            transform: translateY(-50%);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <div class="form-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-green);">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h2>Editar Estudiante</h2>
+            </div>
+            
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group field-decoration">
+                        <label class="form-label">Nombre Completo:</label>
+                        <input type="text" class="form-control" name="txtNombreCompleto" value="{{ estudiante.nombre_completo }}" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    
+                    <div class="form-group field-decoration">
+                        <label class="form-label">Correo Electrónico:</label>
+                        <input type="email" class="form-control" name="txtCorreo" value="{{ estudiante.correo }}" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    
+                    <div class="form-group field-decoration">
+                        <label class="form-label">Grado:</label>
+                        <input type="text" class="form-control" name="txtGrado" value="{{ estudiante.grado }}" required>
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    
+                    <div class="form-group field-decoration">
+                        <label class="form-label">Fecha de Registro:</label>
+                        <input type="date" class="form-control" name="txtFechaRegistro" value="{{ estudiante.fecha_registro|date:'Y-m-d' }}" required>
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    
+                    <div class="buttons-container">
+                        <button type="submit" class="btn btn-primary">
+                            Guardar Cambios
+                        </button>
+                        <a href="{% url 'registro_estudiante' %}" class="btn btn-secondary">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Correo:</label>
-            <input type="email" class="form-control" name="txtCorreo" value="{{ estudiante.correo }}" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Grado:</label>
-            <input type="text" class="form-control" name="txtGrado" value="{{ estudiante.grado }}" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Fecha de Registro:</label>
-            <input type="date" class="form-control" name="txtFechaRegistro" value="{{ estudiante.fecha_registro|date:'Y-m-d' }}" required>
-        </div>
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-            <a href="{% url 'registro_estudiante' %}" class="btn btn-secondary ms-2">Cancelar</a>
-        </div>
-    </form>
-</div>
+    </div>
+    
+    <!-- Para los íconos (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</body>
+</html>
 {% endblock %}

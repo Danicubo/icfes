@@ -6,6 +6,140 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Isamar</title>
+    <!-- Versión avanzada con efectos más elaborados -->
+<style>
+  /* Estilos para transiciones más elaboradas */
+  body {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .transition-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  /* Efecto de barrido con el color principal de Isamar */
+  .sweep-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+  }
+  
+  .sweep-effect.active {
+    transform: scaleX(1);
+  }
+  
+  .sweep-effect.reverse {
+    transform-origin: right;
+  }
+  
+  /* Efecto con el logo */
+  .logo-transition {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 80px;
+    height: 80px;
+    background-image: url('ruta/al/logo-isamar.png'); /* Reemplaza con la ruta correcta */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 10000;
+  }
+  
+  .logo-transition.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+</style>
+
+<!-- Añade este HTML al principio del <body> -->
+<div class="transition-container">
+  <div class="sweep-effect"></div>
+  <div class="logo-transition"></div>
+</div>
+
+<script>
+  // Función para gestionar transiciones avanzadas
+  function initPageTransitions() {
+    // Elementos de transición
+    const transitionContainer = document.querySelector('.transition-container');
+    const sweepEffect = document.querySelector('.sweep-effect');
+    const logoEffect = document.querySelector('.logo-transition');
+    
+    // Detectar si viene de otra página
+    if (performance.navigation.type !== 1) { // No es un refresh
+      // Animación de entrada
+      setTimeout(() => {
+        sweepEffect.classList.add('reverse');
+        sweepEffect.classList.add('active');
+        logoEffect.classList.add('active');
+        
+        setTimeout(() => {
+          sweepEffect.classList.remove('active');
+          setTimeout(() => {
+            logoEffect.classList.remove('active');
+          }, 300);
+        }, 600);
+      }, 100);
+    }
+    
+    // Configurar enlaces para transición de salida
+    document.querySelectorAll('a[href], button[type="submit"], input[type="submit"]').forEach(el => {
+      el.addEventListener('click', function(e) {
+        // Solo para enlaces internos o formularios
+        if ((el.tagName === 'A' && !el.getAttribute('href').startsWith('http') && 
+             !el.getAttribute('href').startsWith('#') && !el.getAttribute('target')) || 
+            el.tagName === 'BUTTON' || el.tagName === 'INPUT') {
+          
+          const isForm = el.form || el.tagName === 'FORM';
+          const formElement = el.form || (el.tagName === 'FORM' ? el : null);
+          
+          if (!isForm || (isForm && formElement && formElement.reportValidity())) {
+            e.preventDefault();
+            
+            // Iniciar animación de salida
+            sweepEffect.classList.remove('reverse');
+            sweepEffect.classList.add('active');
+            logoEffect.classList.add('active');
+            
+            setTimeout(() => {
+              // Redirigir o enviar formulario
+              if (isForm && formElement) {
+                formElement.submit();
+              } else if (el.tagName === 'A') {
+                window.location.href = el.getAttribute('href');
+              }
+            }, 800);
+          }
+        }
+      });
+    });
+  }
+  
+  // Iniciar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', initPageTransitions);
+</script>
+
+
     <style>
       body {
         margin: 0;
@@ -172,6 +306,62 @@
           transform: rotate(0deg) scale(1);
         }
       }
+      .mission-vision-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.mission-box {
+  flex: 1;
+  min-width: 300px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 5px solid #61b33b;
+}
+
+.mission-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mission-box h2 {
+  color: #2e7d32;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.mission-box h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #ffeb3b;
+}
+
+.mission-box p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 1.1em;
+}
+
+.mission-icon {
+  font-size: 2.5em;
+  color: #8cc63f;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
     </style>
   </head>
   <body>
@@ -185,20 +375,42 @@
     </header>
 
     <section id="section">
-      <h2>¿Qué es Isamar?</h2>
-      <p>
+      <h1>¿Qué es Isamar?</h1>
+      <center><h4>
         Isamar es tu plataforma para potenciar tus habilidades, impulsar tus
         sueños y alcanzar nuevas metas utilizando recursos digitales de forma
         gratuita y accesible para todos.
-      </p>
+      </h4>></center>
       <div class="book"></div>
 
       <h2>Iniciar sesión</h2>
       <form  method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Ingresar</button>
+        <button class="rounded-pill border-0 p-3 bg-success text-light" type="submit">Ingresar</button>
       </form>
+    </section>
+
+    
+        
+         <section style="background: linear-gradient(135deg, #e8f5e9, #f1f8e9);">
+      <div class="mission-vision-container">
+        <div class="mission-box">
+          <div class="mission-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h2>Nuestra Misión</h2>
+          <p>Proporcionar soluciones tecnológicas innovadoras y de alta calidad que empoderen a nuestros clientes a alcanzar sus objetivos.</p>
+        </div>
+        
+        <div class="mission-box">
+          <div class="mission-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h2>Nuestra Visión</h2>
+          <p>Ser reconocidos como líderes en la industria de la tecnología, innovando constantemente y ofreciendo soluciones de software que transforman la forma en que las empresas operan.</p>
+        </div>
+      </div>
     </section>
 
     <section style="background-color: #f5f5f5">
@@ -237,7 +449,7 @@
           <p>Todo el contenido es 100% gratis, para siempre.</p>
         </div>
       </div>
-      <img src="{% static 'imagenes/isa.jpg' %}" alt="Beneficios de Isamar" />
+      
     </section>
 
     <footer>

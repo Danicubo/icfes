@@ -11,4 +11,8 @@ urlpatterns = [
     path('Academico/materias-noveno-decimo/', views.materiasNovenoDecimo),
     path('Academico/simulacro/', views.simulacro1),
     path('logout/', views.logout, name='logout'),
+    path('Academico/ciencias_naturales/', views.cuestionario, name='ciencias_naturales'),
+    path('Academico/lenguaje/', views.cuestionarioLenguaje, name='lenguaje'),
+    
+    path('crear_examen/', views.crear_examen, name='crear_examen'),
 ]

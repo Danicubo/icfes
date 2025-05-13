@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Examen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        form p {
+            margin-bottom: 15px;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #FFC107;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/">Volver</a>
+    <h1>Crear Examen</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="question">
+            <h2>Datos del Examen</h2>
+            {{ simulacro_form.as_p }}
+        </div>
+
+        <h2>Preguntas</h2>
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+            <div class="question">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit">Guardar Examen</button>
+    </form>
+</div>
+
+</body>
+</html>

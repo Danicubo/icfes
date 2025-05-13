@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Estudiante, Simulacro, Profesores, Resultados
-from .forms import LoginForm
+from .models import Estudiante, Simulacro, Profesores, Resultados, Preguntas
 from .utils.decorators import solo_profesores, solo_estudiantes
 from django.contrib import messages
+from .forms import SimulacroForm, PreguntaForm, LoginForm
+from django.forms import modelformset_factory
 
 def index(request):
     listadoEstudiantes = Estudiante.objects.all()
@@ -134,3 +135,106 @@ def index(request):
 @solo_estudiantes
 def grados_9_10(request):
     return render(request, 'Academico/grados.html')
+
+
+@solo_profesores
+def crear_examen(request):
+    PreguntasFormSet = modelformset_factory(Preguntas, form=PreguntaForm, extra=5)  # Aquí definimos 5 preguntas por defecto
+    
+    if request.method == 'POST':
+        simulacro_form = SimulacroForm(request.POST)
+        formset = PreguntasFormSet(request.POST, queryset=Preguntas.objects.none())  # Evita conflictos con instancias previas
+        
+        if simulacro_form.is_valid() and formset.is_valid():
+            simulacro = simulacro_form.save()
+
+            for form in formset:
+                if form.cleaned_data:  # Evita guardar formularios vacíos
+                    pregunta = form.save(commit=False)
+                    pregunta.simulacro = simulacro
+                    pregunta.save()
+
+            return redirect('/')  # Redirige a una lista de exámenes (puedes ajustarlo a tu URL)
+
+    else:
+        simulacro_form = SimulacroForm()
+        formset = PreguntasFormSet(queryset=Preguntas.objects.none())  # No se cargan preguntas existentes
+
+    return render(request, 'Academico/crear_examen.html', {
+        'simulacro_form': simulacro_form,
+        'formset': formset
+    })
+    
+    
+def cuestionario(request):
+    if request.method == 'POST':
+        # Recibimos las respuestas del formulario
+        respuestas_usuario = {
+            'q1': request.POST.get('q1', ''),
+            'q2': request.POST.get('q2', ''),
+            'q3': request.POST.get('q3', ''),
+            'q4': request.POST.get('q4', ''),
+        }
+
+        # Definimos las respuestas correctas
+        respuestas_correctas = {
+            'q1': 'correcto',
+            'q2': 'correcto',
+            'q3': 'correcto',
+            'q4': 'correcto',
+        }
+
+        # Calculamos el puntaje
+        puntaje = sum(1 for key in respuestas_correctas if respuestas_usuario.get(key) == respuestas_correctas[key])
+
+        # Retornamos el resultado al template
+        return render(request, 'Academico/ciencias_naturales.html', {'puntaje': puntaje})
+
+    # En caso de GET simplemente mostramos el formulario vacío
+    return render(request, 'Academico/ciencias_naturales.html')
+
+
+
+
+
+
+
+def cuestionarioLenguaje(request):
+    if request.method == 'POST':
+        # Recibimos las respuestas del formulario
+        respuestas_usuario = {
+            'q1': request.POST.get('q1', ''),
+            'q2': request.POST.get('q2', ''),
+            'q3': request.POST.get('q3', ''),
+            'q4': request.POST.get('q4', ''),
+        }
+
+        # Definimos las respuestas correctas
+        respuestas_correctas = {
+            'q1': 'correcto',
+            'q2': 'correcto',
+            'q3': 'correcto',
+            'q4': 'correcto',
+        }
+
+        # Calculamos el puntaje
+        puntaje = sum(1 for key in respuestas_correctas if respuestas_usuario.get(key) == respuestas_correctas[key])
+
+        # Retornamos el resultado al template
+        return render(request, 'Academico/lenguaje.html', {'puntaje': puntaje})
+
+    # En caso de GET simplemente mostramos el formulario vacío
+    return render(request, 'Academico/lenguaje.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
